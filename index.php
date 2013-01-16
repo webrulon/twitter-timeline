@@ -5,11 +5,7 @@
 
     require_once 'init/bootloader.php';
     
-    if( $twitter->is_unauthed() ){
-        
-        //he isnt verified
-        $twitter->clear();
-    }
+    $tweeter->only_authed();
     
     $profile = $twitter->connect();
     
@@ -32,7 +28,8 @@
 <div class="row-fluid">
     <div class="span6 offset3">
         <h3>Loading Latest 10 Tweets</h3>
-        
+        <div><a href="<?php echo ABSPATH . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a>
+            
         <?php $tweet = $twitter->get_tweet(10); ?>
         <div class="user-tweet">
         <?php foreach( $tweet as $t ): ?>

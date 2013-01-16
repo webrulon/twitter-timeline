@@ -63,11 +63,11 @@ class Theme{
     function dump_footer(){
         
         foreach( $this->css_coll as $css ){
-            call_user_method('css', $this, $css);
+            call_user_func_array(array(&$this, 'css'), $css);
         }
         
         foreach( $this->js_coll as $js ){
-            call_user_method('js', $this, $js);
+            call_user_func_array(array(&$this, 'js'), $js);
         }
     }
 }

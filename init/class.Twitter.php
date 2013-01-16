@@ -16,6 +16,14 @@ class Twitter{
     }
     
     /*
+     * only allow authed users
+     */
+    function only_authed(){
+        if( $this->is_unauthed() ){
+            $this->clear();
+        }
+    }
+    /*
      * get URI for login
      */
     
