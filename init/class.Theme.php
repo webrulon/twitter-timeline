@@ -8,8 +8,8 @@ class Theme{
      * @param ext extension of the file, in case using dynamically generated script
      */
     
-    private $css_coll = array();
-    private $js_coll = array();
+    private $css_coln = array();
+    private $js_coln = array();
     
     function js( $filename, $dir = WEBROOT_JS, $ext = EXT_JS ){
         ?>
@@ -50,23 +50,23 @@ class Theme{
     }
     
     function js_footer($filename, $dir = WEBROOT_JS, $ext = EXT_JS){
-        $this->js_coll[] = array( $filename, $dir, $ext);
+        $this->js_coln[] = array( $filename, $dir, $ext);
     }
     /*
      * these are used to dump css file link at footer
      * instead of middle of content
      */
     function css_footer($filename, $dir = WEBROOT_CSS, $ext =  EXT_CSS){
-        $this->css_coll[] = array( $filename, $dir, $ext);
+        $this->css_coln[] = array( $filename, $dir, $ext);
     }
     
     function dump_footer(){
         
-        foreach( $this->css_coll as $css ){
+        foreach( $this->css_coln as $css ){
             call_user_func_array(array(&$this, 'css'), $css);
         }
         
-        foreach( $this->js_coll as $js ){
+        foreach( $this->js_coln as $js ){
             call_user_func_array(array(&$this, 'js'), $js);
         }
     }

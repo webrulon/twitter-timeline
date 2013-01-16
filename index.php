@@ -5,7 +5,7 @@
 
     require_once 'init/bootloader.php';
     
-    $tweeter->only_authed();
+    $twitter->only_authed();
     
     $profile = $twitter->connect();
     
