@@ -15,12 +15,8 @@ $pdf->AddPage();
 
 $pdf->SetTitle('Tweets');
 
-$html = '<ol>';
 foreach( $tweet as $t ){
-    $html.= '<li>' . $t->text . '</li>' ;
+    $pdf->Write(5, $t->text . "\n");
 }
-$html .= '</ol>';
-
-$pdf->WriteHTML($html);
 
 $pdf->Output();
