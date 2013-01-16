@@ -17,8 +17,8 @@
 ?>
 <div class="row-fluid">
     <div class="offset1 span4">
-        <img src="<?php $profile['profile_image_url'] ?>">
-        <div><?php $profile['name'] ?></div>
+        <img src="<?php echo $profile->profile_image_url ?>">
+        <div><?php echo $profile->name ?></div>
     </div>
 </div>
 
