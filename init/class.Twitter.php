@@ -64,6 +64,8 @@ class Twitter{
      */
     function get_tweet($num){
         
+        return $this->conn->get('statuses/user_timeline', array('count'=>$num));
+        
     }
     
     /*

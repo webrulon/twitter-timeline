@@ -15,9 +15,13 @@
     
     $theme->elem('header');
 ?>
+<div class="page-header">
+    <h2>Twitter Timeline</h2>
+</div>
+
 <div class="row-fluid">
-    <div class="offset1 span4">
-        <img src="<?php echo $profile->profile_image_url ?>">
+    <div class="offset3 span6">
+        <div><img src="<?php echo $profile->profile_image_url ?>">
         <div><?php echo $profile->name ?></div>
     </div>
 </div>
@@ -26,11 +30,11 @@
     <div class="span6 offset3">
         <h3>Loading Latest 10 Tweets</h3>
         
-        <?php $tweet = $twitter->get(10); ?>
+        <?php $tweet = $twitter->get_tweet(10); ?>
         
         <?php foreach( $tweet as $t ): ?>
         <ol>
-            <li>><?php echo $t ?></li>
+            <li>><?php echo $t->text ?></li>
         </ol>
         <?php endforeach; ?>
         

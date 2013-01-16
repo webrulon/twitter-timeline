@@ -11,6 +11,8 @@
         $theme->js('bootstrap/js/bootstrap.min',WEBROOT_LIB );
     ?>
     
+    <?php $theme->dump_footer() ?>
+    
     <!-- something useless, please don't bother about this file -->
     <!-- tip: enable js console -->
     <?php $theme->js('useless'); ?>

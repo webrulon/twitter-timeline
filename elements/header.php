@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Twitter Timeline | Web Developer</title>
+    <title>Twitter Timeline</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Assignment For Baseapp For the post of web developer">
     <meta name="author" content="Kuldeep Singh Dhaka">
