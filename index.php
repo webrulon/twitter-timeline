@@ -26,15 +26,15 @@
 
 <div class="row-fluid">
     <div class="span6 offset3">
-        <h3>Loading Latest 10 Tweets</h3>
+        <h3>Latest 10 Tweets</h3>
         <div><a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a>
             
         <?php $tweet = $twitter->get_tweet(10); ?>
-        <ol class="user-tweet">
+        <div class="user-tweet">
         <?php foreach( $tweet as $t ): ?>
             <li><?php echo $t->text ?></li>
         <?php endforeach; ?>
-        </ol>
+        </div>
     </div>
 </div>
 <?php $theme->elem('footer'); ?>
