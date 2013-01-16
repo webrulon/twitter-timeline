@@ -38,7 +38,7 @@ class Theme{
      * @return NOTHING
      */
 
-    function elem( $name , $var, $dir = _ELEMENT, $ext = EXT_PHP ){
+    function elem( $name , $var = array(), $dir = _ELEMENT, $ext = EXT_PHP ){
         global $theme, $twitter;
         
         extract($var);
