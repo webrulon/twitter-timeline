@@ -1,6 +1,6 @@
 <?php
 
-include_once _LIB . 'twitteroauth.php';
+include_once _LIB . DS . 'twitteroauth.php';
 
 class Twitter{
     
