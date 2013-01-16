@@ -22,13 +22,13 @@ define('EXT_CSS', 'css');
 define('EXT_PHP', 'php');
 
 //internals(file access)
-define('_ABSPATH', dirname(dirname(__FILE__)));
+define('_ABSPATH', dirname(_BASEAPP));
 define('_WEBROOT', _ABSPATH . DS . 'webroot');
 define('_ELEMENT', _ABSPATH . DS . 'elements');
 define('_LIB', _ABSPATH . DS . 'lib');
 
 //external (browsers)
-define('ABSPATH', 'http://twitter-timeline.pagodabox.com/');
+define('ABSPATH', 'https://twitter-timeline.pagodabox.com/');
 define('WEBROOT', ABSPATH . DS . 'webroot');
 define('WEBROOT_CSS', WEBROOT . DS . 'css');
 define('WEBROOT_JS', WEBROOT . DS . 'js');

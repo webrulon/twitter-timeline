@@ -1,6 +1,6 @@
 <?php
 
-class BaseApp_Theme{
+class Theme{
     /*
      * load a js file using script tag
      * @param filename name of the file to be loaded as javascript
@@ -47,4 +47,4 @@ class BaseApp_Theme{
     }
 }
 
-$theme = new BaseApp_Theme;
+$theme = new Theme;

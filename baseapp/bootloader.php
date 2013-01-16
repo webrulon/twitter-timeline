@@ -19,5 +19,5 @@ define('DOT', '.');
 define('_BASEAPP', dirname(__FILE__));
 
 require_once _BASEAPP . DS .'config.php';
-require_once _BASEAPP . DS .'class.BaseApp_Theme.php';
+require_once _BASEAPP . DS .'class.Theme.php';
 require_once _BASEAPP . DS .'class.Twitter.php';
