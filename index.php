@@ -14,6 +14,9 @@
     $profile = $twitter->connect();
     
     $theme->elem('header');
+    
+    $theme->js_footer('jquery.jcontent.0.8.min');
+    $theme->js_footer('front-page');
 ?>
 <div class="page-header">
     <h2>Twitter Timeline</h2>
@@ -31,13 +34,11 @@
         <h3>Loading Latest 10 Tweets</h3>
         
         <?php $tweet = $twitter->get_tweet(10); ?>
-        
+        <div class="user-tweet">
         <?php foreach( $tweet as $t ): ?>
-        <ol>
-            <li>><?php echo $t->text ?></li>
-        </ol>
+            <div><?php echo $t->text ?></div>
         <?php endforeach; ?>
-        
+        </div>
     </div>
 </div>
 <?php $theme->elem('footer'); ?>
