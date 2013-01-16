@@ -50,14 +50,14 @@ class Theme{
     }
     
     function js_footer($filename, $dir = WEBROOT_JS, $ext = EXT_JS){
-        $this->js_coll[] = array( compact('filename', 'dir', 'ext') );
+        $this->js_coll[] = array( $filename, $dir, $ext);
     }
     /*
      * these are used to dump css file link at footer
      * instead of middle of content
      */
     function css_footer($filename, $dir = WEBROOT_CSS, $ext =  EXT_CSS){
-        $this->css_coll[] = array( compact('filename', 'dir', 'ext') );
+        $this->css_coll[] = array( $filename, $dir, $ext);
     }
     
     function dump_footer(){
