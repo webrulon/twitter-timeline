@@ -10,7 +10,7 @@ class Twitter{
      * is the user login'ed
      */
     
-    function is(){
+    function is_unauthed(){
         
         return (empty($_SESSION['access_token']) || empty($_SESSION['access_token']['oauth_token']) || empty($_SESSION['access_token']['oauth_token_secret']));
     }

@@ -5,7 +5,7 @@
 
     require_once 'init/bootloader.php';
     
-    if( ! $twitter->is() ){
+    if( $twitter->is_unauthed() ){
         
         //he isnt verified
         $twitter->clear();
