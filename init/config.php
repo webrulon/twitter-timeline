@@ -28,7 +28,7 @@ define('_ELEMENT', _ABSPATH . DS . 'elements');
 define('_LIB', _ABSPATH . DS . 'lib');
 
 //external (browsers)
-define('ABSPATH', 'https://twitter-timeline.pagodabox.com/');
+define('ABSPATH', 'https://twitter-timeline.pagodabox.com');
 define('WEBROOT', ABSPATH . DS . 'webroot');
 define('WEBROOT_CSS', WEBROOT . DS . 'css');
 define('WEBROOT_JS', WEBROOT . DS . 'js');
@@ -38,4 +38,6 @@ define('WEBROOT_LIB', WEBROOT . DS . 'lib');
 define('TWITTER_KEY','23vRWb6FnR4ky6aNfmwYw');
 define('TWITTER_SECRET','VHzDgHdZ4bXo7dgrOC1gtzL99a63Jq7uqsidpC8E8');
 
-define('TWITTER_LANDPAGE', ABSPATH . DS . 'home.php');
+define('TWITTER_LANDPAGE', ABSPATH . DS . 'index.php');
+define('TWITTER_CALLBACK', ABSPATH . DS . 'callback.php');
+define('TWITTER_LOGIN', ABSPATH . DS . 'connect.php');
