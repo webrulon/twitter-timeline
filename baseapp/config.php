@@ -28,14 +28,14 @@ define('_ELEMENT', _ABSPATH . DS . 'elements');
 define('_LIB', _ABSPATH . DS . 'lib');
 
 //external (browsers)
-define('ABSPATH', DS . 'baseapp');
+define('ABSPATH', 'http://twitter-timeline.pagodabox.com/');
 define('WEBROOT', ABSPATH . DS . 'webroot');
 define('WEBROOT_CSS', WEBROOT . DS . 'css');
 define('WEBROOT_JS', WEBROOT . DS . 'js');
 define('WEBROOT_IMG', WEBROOT . DS . 'img');
 define('WEBROOT_LIB', WEBROOT . DS . 'lib');
 
-define('TWITTER_KEY','sdfsdf');
-define('TWITTER_SECRET','sdfsdf');
+define('TWITTER_KEY','23vRWb6FnR4ky6aNfmwYw');
+define('TWITTER_SECRET','VHzDgHdZ4bXo7dgrOC1gtzL99a63Jq7uqsidpC8E8');
 
 define('TWITTER_LANDPAGE', ABSPATH . DS . 'home.php');
