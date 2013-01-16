@@ -4,8 +4,6 @@ require_once 'init/bootloader.php';
 
 $twitter->only_authed();
 
-$pdf->SetTitle('Tweets');
-
 $twitter->connect();
 $tweet = $twitter->get_tweet(10);
 
@@ -14,6 +12,8 @@ include _LIB . DS . 'fpdf/fpdf.php';
 
 $pdf = new FPDF();
 $pdf->AddPage();
+
+$pdf->SetTitle('Tweets');
 
 $html = '<ol>';
 foreach( $tweet as $t ){

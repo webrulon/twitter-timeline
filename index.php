@@ -11,7 +11,6 @@
     
     $theme->elem('header');
     
-    $theme->js_footer('jquery.jcontent.0.8.min');
     $theme->js_footer('front-page');
 ?>
 <div class="page-header">
