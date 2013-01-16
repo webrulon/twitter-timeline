@@ -27,12 +27,12 @@
 <div class="row-fluid">
     <div class="span6 offset3">
         <h3>Latest 10 Tweets</h3>
-        <div><a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a>
+        <p><a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a></p>
             
         <?php $tweet = $twitter->get_tweet(10); ?>
         <div class="user-tweet">
         <?php foreach( $tweet as $t ): ?>
-            <div><?php echo $t->text ?></div>
+            <p><?php echo $t->text ?></p>
         <?php endforeach; ?>
         </div>
     </div>

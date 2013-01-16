@@ -2,19 +2,19 @@ var slideshow;
 
 $(document).ready(function (){
     
-    $('.user-tweet div')
+    $('.user-tweet p')
             .hide()
-            .is(':first-child')
+            .first()
             .show();
     
     slideshow = setInterval(function(){
-        $('.user-tweet div:first-child')
+        $('.user-tweet p:first-child')
                 .detach()
                 .appendTo('.user-tweet');
         
-        $('.user-tweet div')
+        $('.user-tweet p')
                 .hide()
-                .is(':first-child')
+                .first()
                 .show();
     },3000);
 });
