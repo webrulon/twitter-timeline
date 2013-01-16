@@ -30,11 +30,11 @@
         <div><a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a>
             
         <?php $tweet = $twitter->get_tweet(10); ?>
-        <div class="user-tweet">
+        <ol class="user-tweet">
         <?php foreach( $tweet as $t ): ?>
-            <div><?php echo $t->text ?></div>
+            <li><?php echo $t->text ?></li>
         <?php endforeach; ?>
-        </div>
+        </ol>
     </div>
 </div>
 <?php $theme->elem('footer'); ?>

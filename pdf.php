@@ -15,8 +15,12 @@ $pdf->AddPage();
 
 $pdf->SetTitle('Tweets');
 
+$pdf->SetFont('Arial','',14);
+
 foreach( $tweet as $t ){
-    $pdf->Write(5, $t->text . "\n");
+    $pdf->Write(5, $t->text);
+    $pdf->ln();
+    $pdf->ln();
 }
 
 $pdf->Output();
