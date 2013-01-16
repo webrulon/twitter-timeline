@@ -43,7 +43,7 @@ class Twitter{
     
     function url(){
         
-        return $connection->getAuthorizeURL($this->tmp, FALSE);
+        return $this->conn->getAuthorizeURL($this->tmp, FALSE);
     }
     /*
      * get the lastest n tweets
