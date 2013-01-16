@@ -7,6 +7,7 @@ $twitter->only_authed();
 include _LIB . DS . 'fpdf/fpdf.php';
 
 $pdf = new FPDF();
+$pdf->AddPage();
 $pdf->SetTitle('Tweets');
 
 $twitter->connect();
