@@ -32,7 +32,7 @@
         <?php $tweet = $twitter->get_tweet(10); ?>
         <div class="user-tweet">
         <?php foreach( $tweet as $t ): ?>
-            <li><?php echo $t->text ?></li>
+            <div><?php echo $t->text ?></div>
         <?php endforeach; ?>
         </div>
     </div>

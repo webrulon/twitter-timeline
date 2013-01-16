@@ -2,7 +2,10 @@ var slideshow;
 
 $(document).ready(function (){
     
-    $('.user-tweet div').hide().is(':first-child').show();
+    $('.user-tweet div')
+            .hide()
+            .is(':first-child')
+            .show();
     
     slideshow = setInterval(function(){
         $('.user-tweet div:first-child')
@@ -13,6 +16,6 @@ $(document).ready(function (){
                 .hide()
                 .is(':first-child')
                 .show();
-    },5000);
+    },3000);
 });
 
