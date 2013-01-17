@@ -101,7 +101,7 @@ class Twitter{
         
         $list = array();
         $i = 0;
-        $cursor = '-1';
+        $cursor = '0';
         $responce = NULL;
         $break = false;
         
@@ -109,13 +109,13 @@ class Twitter{
             
             $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name'));
             
-            $count = count($responce->users);
+            $count_received = count($responce->users);
             
-            if( ! $count ){
+            if( ! $count_received ){
                 
                 //we have nothing to save now
                 break;
-            } else if( $count < 20 ){
+            } else if( $count_received < 20 ){
                 
                 //this is the end of list , bocs twitter send 20 users in one go and its less than 20
                 $break = true;
