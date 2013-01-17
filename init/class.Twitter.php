@@ -103,21 +103,22 @@ class Twitter{
         $i = 0;
         $cursor = '-1';
         $responce = NULL;
+        $break = false;
         
-        while( true ){
-            
-            if( $count != 'all' AND $i >= $count ){
-                
-                //reached the limit
-                break;
-            }
+        while( ! $break ){
             
             $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name'));
             
-            if( ! count($responce) ){
+            $count = count($responce->users);
+            
+            if( ! $count ){
                 
                 //we have nothing to save now
                 break;
+            } else if( $count < 20 ){
+                
+                //this is the end of list , bocs twitter send 20 users in one go and its less than 20
+                $break = true;
             }
             
             $cursor = $responce->next_cursor_str;
@@ -131,8 +132,10 @@ class Twitter{
                     
                     if( $i < $count )
                         $list[] = $u;
-                    else
+                    else{
+                        $break = true;
                         break;
+                    }
                 }
             }
         }
