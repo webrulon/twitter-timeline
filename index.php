@@ -60,10 +60,13 @@
             unset($follower_recv);
             
             //get random follower
-            $rand = array_rand($follower,
-                    //dont ask more tweet that catually their are
-                    min( count($follower) , 10)
-            );
+            $num_of_rand = min( count($follower) , 10);
+            
+            if( $num_of_rand > 0 )
+                $rand = array_rand($follower,
+                        //dont ask more tweet that catually their are
+                        $num_of_rand
+                );
             
             //printing form for taking input
         ?>
