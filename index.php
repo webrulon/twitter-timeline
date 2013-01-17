@@ -50,14 +50,14 @@
         <h3>10 Random Followers</h3>
         <?php
         
-            $follower_rec = $twitter->get_follower('all');
+            $follower_recv = $twitter->get_follower('all');
             
             //break the array into what we need
             $follower = array();
-            foreach( $follower_rec as $f ){
+            foreach( $follower_recv as $f ){
                 $follower[$f->username] = $f->name;
             }
-            unset($follower_rec);
+            unset($follower_recv);
             
             //get random follower
             $rand = array_rand($follower,
@@ -70,7 +70,7 @@
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error">Oops, There is a problem, try later</div>
             <label>Load Tweet</label>
-            <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_encode($follower) ?>">
+            <input name="_user" id="_user" data-provide="typeahead" data-source="<?php echo json_encode($follower) ?>">
         </form>
         
         <ol>
