@@ -51,12 +51,18 @@
         <?php
             $follower = $twitter->get_follower('all');
             
+            
+            //break the array into what we need
             $follower_broken = array();
             foreach( $follower as $f ){
                 $follower_broken[$f->username] = $f->name;
             }
             
-            $rand = array_rand($follower_broken, 10);
+            //get random follower
+            $rand = array_rand($follower_broken,
+                    //dont ask more tweet that catually their are
+                    min(array( count($follower_broken) , 10 ))
+            );
             
             //printing form for taking input
         ?>
@@ -66,11 +72,13 @@
             <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_encode($follower_broken) ?>">
         </form>
         
-        <?php //printing the list of random user ?>
         <ol>
-        <?php foreach($rand as $f): ?>
-            <li><?php echo $f ?></li>
-        <?php endforeach; ?>
+        <?php
+            //printing the list of random user
+            foreach($rand as $f){
+                printf("<li>%s</li>", $f);
+            }
+        ?>
         </ol>
     </div>
 </div>

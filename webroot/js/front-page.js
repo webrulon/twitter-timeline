@@ -9,39 +9,44 @@ $(document).ready(function (){
     
     //load the input with typehead
     $('#_user').typehead({
-        updater: function(item){
-            
-            //query using ajax
-            $.ajax('/ajax_tweet.php',{
-                cache: false,
-                data: {
-                    'username': item
-                },
-                type: 'GET',
-                dataType: 'json',
-                success: function(data){
-                    
-                    $('#responce_err').hide();
-                    
-                    $t = $('.user-tweet');
-                    $tin = $t.children('.carousel-inner');
-                    
-                    //stop and remove all tweets
-                    $t.carousel('pause');
-                    $tin.children('.carousel-inner').empty();
-                    
-                    $.each(data, function(i, tw){
-                        $tin.append('<li class="item">' + tw + '</li>');
-                    });
-                    
-                    //start the carousal
-                    $t.carousel('cycle');
-                },
-                error: function (){
-                    $('#responce_err').hide();
-                }
-            });
-        }
+        updater: load_tweets
     });
 });
 
+function load_tweets(item){
+    //query using ajax
+    $.ajax('/ajax_tweet.php',{
+        cache: false,
+        data: {
+            'username': item
+        },
+
+        type: 'GET',
+        
+        dataType: 'json',
+        
+        success: inert_tweet_into_carousal,
+        error: function (){
+            $('#responce_err').hide();
+        }
+    });
+}
+
+function inert_tweet_into_carousal(data){
+
+    $('#responce_err').hide();
+
+    $t = $('#user-tweet');
+    $tin = $t.children('.carousel-inner');
+
+    //stop and remove all tweets
+    $t.carousel('pause');
+    $tin.empty();
+
+    $.each(data, function(i, tw){
+        $tin.append('<div class="item">' + tw + '</div>');
+    });
+
+    //start the carousal
+    $t.carousel('cycle');
+}
