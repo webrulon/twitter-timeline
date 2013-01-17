@@ -95,6 +95,10 @@ class Twitter{
     
     function get_follower($count = 'all' , $screen_name = NULL){
         
+        if( $count == 'all' ){
+            $count = $this->user->followers_count;
+        }
+        
         if( $screen_name == NULL ){
             $screen_name = $this->user->screen_name;
         }
@@ -103,40 +107,25 @@ class Twitter{
         $i = 0;
         $cursor = '0';
         $responce = NULL;
-        $break = false;
         
-        while( ! $break ){
+        while( $i < $count ){
             
             $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name'));
             
-            $count_received = count($responce->users);
-            
-            if( ! $count_received ){
+            if( ! count($responce->users) ){
                 
                 //we have nothing to save now
                 break;
-            } else if( $count_received < 20 ){
-                
-                //this is the end of list , bocs twitter send 20 users in one go and its less than 20
-                $break = true;
             }
             
             $cursor = $responce->next_cursor_str;
             
             foreach( $responce->users as $u ){
                 
-                if( $count == 'all' ){
+                if( $i < $count )
                     $list[] = $u;
-                }
-                else{
-                    
-                    if( $i < $count )
-                        $list[] = $u;
-                    else{
-                        $break = true;
-                        break;
-                    }
-                }
+                else
+                    break;
             }
         }
         
