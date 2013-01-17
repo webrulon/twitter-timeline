@@ -49,19 +49,20 @@
         <?php // get followers ?>
         <h3>10 Random Followers</h3>
         <?php
-            $follower = $twitter->get_follower('all');
-            
+        
+            $follower_rec = $twitter->get_follower('all');
             
             //break the array into what we need
-            $follower_broken = array();
-            foreach( $follower as $f ){
-                $follower_broken[$f->username] = $f->name;
+            $follower = array();
+            foreach( $follower_rec as $f ){
+                $follower[$f->username] = $f->name;
             }
+            unset($follower_rec);
             
             //get random follower
-            $rand = array_rand($follower_broken,
+            $rand = array_rand($follower,
                     //dont ask more tweet that catually their are
-                    min(array( count($follower_broken) , 10 ))
+                    min( count($follower) , 10)
             );
             
             //printing form for taking input
@@ -69,14 +70,14 @@
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error">Oops, There is a problem, try later</div>
             <label>Load Tweet</label>
-            <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_encode($follower_broken) ?>">
+            <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_encode($follower) ?>">
         </form>
         
         <ol>
         <?php
             //printing the list of random user
-            foreach($rand as $f){
-                printf("<li>%s</li>", $f);
+            foreach($rand as $i){
+                printf("<li>%s</li>", $follower[$i]);
             }
         ?>
         </ol>
