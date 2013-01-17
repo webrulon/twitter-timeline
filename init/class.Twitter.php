@@ -6,6 +6,8 @@ class Twitter{
     
     private $conn = NULL;
     
+    private $user = NULL;
+    
     /*
      * is the user login'ed
      */
@@ -63,17 +65,72 @@ class Twitter{
             $this->clear();
         }
         
+        //save for others
+        $this->user = $content;
+        
         return $content;
     }
     
     /*
      * get the lastest n tweets
-     * @param num number of tweets
+     * 
+     * @param count number of tweets
+     * @param screen_name name of the user whose tweets to fetch, (option)
      */
-    function get_tweet($num){
+    function get_tweet($count, $screen_name = NULL){
         
-        return $this->conn->get('statuses/user_timeline', array('count'=>$num));
+        if( $screen_name == NULL ){
+            $screen_name = $this->user->screen_name;
+        }
+        return $this->conn->get('statuses/user_timeline', compact('count','screen_name'));
         
+    }
+    
+    /*
+     * get followers
+     * 
+     * @param count maximum number of followers to fetch (optional)(default "all")
+     * @param screen_name screen-name of user whose follower to fetch(optional)
+     */
+    
+    function get_follower($count = 'all' , $screen_name = NULL){
+        
+        if( $screen_name == NULL ){
+            $screen_name = $this->user->screen_name;
+        }
+        
+        $list = array();
+        $i = 0;
+        $cursor = '-1';
+        $responce = NULL;
+        
+        while( $count != 'all' AND $i < $count ){
+            $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name'));
+            
+            if( ! count($responce) ){
+                
+                //we have nothing to save now
+                break;
+            }
+            
+            $cursor = $responce->next_cursor_str;
+            
+            foreach( $responce->users as $u ){
+                
+                if( $count == 'all' ){
+                    $list[] = $u;
+                }
+                else{
+                    
+                    if( $i < $count )
+                        $list[] = $u;
+                    else
+                        break;
+                }
+            }
+        }
+        
+        return $list;
     }
     
     /*
