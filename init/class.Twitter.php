@@ -104,7 +104,14 @@ class Twitter{
         $cursor = '-1';
         $responce = NULL;
         
-        while( $count != 'all' AND $i < $count ){
+        while( true ){
+            
+            if( $count != 'all' AND $i >= $count ){
+                
+                //reached the limit
+                break;
+            }
+            
             $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name'));
             
             if( ! count($responce) ){

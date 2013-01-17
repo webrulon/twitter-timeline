@@ -73,7 +73,7 @@
             //printing form for taking input
         ?>
         <form class="form-horizontal">
-            <div id="responce_err" class="alert-error">Oops, There is a problem, try later</div>
+            <div id="responce_err" class="alert-error hide">Oops, There is a problem, try later</div>
             <label>Load Tweet</label>
             <input name="_user" id="_user" data-provide="typeahead" data-source="<?php echo json_encode($follower) ?>">
         </form>
