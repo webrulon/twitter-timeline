@@ -126,6 +126,8 @@ class Twitter{
                     $list[] = $u;
                 else
                     break;
+                
+                $i++;
             }
         }
         
