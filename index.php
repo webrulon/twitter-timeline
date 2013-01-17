@@ -62,6 +62,8 @@
             //get random follower
             $num_of_rand = min( count($follower) , 10);
             
+            $rand = array();
+            
             if( $num_of_rand > 0 )
                 $rand = array_rand($follower,
                         //dont ask more tweet that catually their are
@@ -79,8 +81,10 @@
         <ol>
         <?php
             //printing the list of random user
-            foreach($rand as $i){
-                printf("<li>%s</li>", $follower[$i]);
+            if( $num_of_rand > 0 ){
+                foreach($rand as $i){
+                    printf("<li>%s</li>", $follower[$i]);
+                }
             }
         ?>
         </ol>
