@@ -57,17 +57,20 @@
             }
             
             $rand = array_rand($follower_broken, 10);
+            
+            //printing form for taking input
         ?>
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error">Oops, There is a problem, try later</div>
             <label>Load Tweet</label>
             <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_decode($follower_broken) ?>">
-        </div>
-    
+        </form>
+        
+        <?php //printing the list of random user ?>
         <ol>
-            <?php foreach($rand as $f): ?>
-            <li><?php echo $f->name ?></li>
-            <?php endforeach; ?>
+        <?php foreach($rand as $f): ?>
+            <li><?php echo $f ?></li>
+        <?php endforeach; ?>
         </ol>
     </div>
 </div>
