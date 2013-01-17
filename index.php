@@ -40,8 +40,8 @@
                     <div class="item"><p><?php echo $t->text ?></p></div>
                 <?php endforeach; ?>
             </div>
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            <a class="carousel-control left" href="#user-tweet" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#user-tweet" data-slide="next">&rsaquo;</a>
         </div>
         
         <hr/>
@@ -50,30 +50,22 @@
         <h3>10 Random Followers</h3>
         <?php
             $follower = $twitter->get_follower('all');
-            $rand = array();
-            $count = count($follower);
-            $rnum ;//random number
             
-            //get 10 random followers
-            for($i = 0; $i < 10; $i++){
-                
-               //count-1 becuase its exclsive, and could cause overflow
-               $rnum = rand(0, $count - 1);
-               $rand = $follower[$rnum];
-            }
-            
-            //data for json decode
-            $forjson = array();
+            $follower_broken = array();
             foreach( $follower as $f ){
-                $forjson[$f->username] = $f->name;
+                $follower_broken[$f->username] = $f->name;
             }
+            
+            $rand = array_rand($follower_broken, 10);
         ?>
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error">Oops, There is a problem, try later</div>
-            <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_decode($forjson) ?>">
+            <label>Load Tweet</label>
+            <input name="_user" id="_user" data-provide="typehead" data-source="<?php echo json_decode($follower_broken) ?>">
         </div>
+    
         <ol>
-            <?php foreach($follower as $f): ?>
+            <?php foreach($rand as $f): ?>
             <li><?php echo $f->name ?></li>
             <?php endforeach; ?>
         </ol>
