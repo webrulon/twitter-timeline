@@ -112,7 +112,7 @@ class Twitter{
         
         while( $i < $count ){
             
-            $responce = $this->conn->get('followers/list/' . $screen_name , compact('cursor', 'skip_status'));
+            $responce = $this->conn->get('followers/ids', compact('cursor', 'screen_name','skip_status'));
             var_dump($responce);
             if( ! count($responce->users) ){
                 
