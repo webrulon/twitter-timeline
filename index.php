@@ -55,13 +55,20 @@
             //extract all screen_name
             $screen_names = array();
             foreach($follower as $f){
-                $screen_names = $f->screen_name;
+                $screen_names[] = $f->screen_name;
             }
             //printing form for taking input
         ?>
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error hide">Oops, There is a problem, try later</div>
-            <label>Load Tweet</label>
+            
+            <div class='control-group'>
+                <label>Load Tweet</label>
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <input id="sakul-contact-form-email" name="email" type="email" required>
+                </div>
+            </div>
             <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
         </form>
         
