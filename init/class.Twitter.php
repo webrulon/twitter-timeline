@@ -43,8 +43,8 @@ class Twitter{
         $request_token = $connection->getRequestToken(TWITTER_CALLBACK);
 
         /* Save temporary credentials to session. */
-        $_SESSION['request_token']['oauth_token'] = $token = $request_token['oauth_token'];
-        $_SESSION['request_token']['oauth_token_secret'] = $request_token['oauth_token_secret'];
+        $_SESSION['request_token'] = $request_token;
+        $token = $request_token['oauth_token'];
         
         return $connection->getAuthorizeURL($token, FALSE);
     }
@@ -103,6 +103,8 @@ class Twitter{
     
     function get_follower($count = 'all' , $screen_name = NULL){
         
+        var_dump($_SESSION);
+        
         if( $count == 'all' ){
             $count = $this->user->followers_count;
         }
@@ -120,9 +122,8 @@ class Twitter{
         
         while( $i < $count ){
             
-            $response = $this->conn->get('followers/ids', compact('cursor', 'screen_name','skip_status'));
+            $response = $this->conn->get('followers/list', compact('cursor', 'screen_name','skip_status'));
             
-            echo 'ids dump';
             var_dump($response);
             
             if( ! count($response->users) ){
