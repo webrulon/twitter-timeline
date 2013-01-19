@@ -25,7 +25,7 @@ function load_tweets(item){
         
         dataType: 'json',
         
-        success: inert_tweet_into_carousal,
+        success: insert_tweet_into_carousal,
         error: function (){
             $('#responce_err').hide();
         }
@@ -34,7 +34,7 @@ function load_tweets(item){
     return item;
 }
 
-function inert_tweet_into_carousal(data){
+function insert_tweet_into_carousal(data){
     
     alert("ready to enter in carousal");
     

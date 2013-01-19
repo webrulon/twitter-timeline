@@ -66,10 +66,10 @@
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input id="sakul-contact-form-email" name="email" type="email" required>
+                    <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
-            <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+            
         </form>
         
         <?php
