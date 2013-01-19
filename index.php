@@ -59,18 +59,18 @@
             }
             //printing form for taking input
         ?>
-        <form class="form-horizontal">
+        <div class="form-horizontal">
             <div id="responce_err" class="alert-error hide">Oops, There is a problem, try later</div>
             
             <div class='control-group'>
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input type="text" name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+                    <input type="text" name="_screen_name" id="_screen_name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
             
-        </form>
+        </div>
         
         <?php
         

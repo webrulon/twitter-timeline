@@ -8,7 +8,7 @@ $(document).ready(function (){
     $('#user-tweet').carousel();
     
     //load the input with typehead
-    $('#_user').typeahead({
+    $('#_screen_name').typeahead({
         updater: load_tweets
     });
 });
