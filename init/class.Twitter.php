@@ -114,23 +114,26 @@ class Twitter{
         $list = array();
         $i = 0;
         $cursor = '0';
-        $responce = NULL;
+        $response = NULL;
         
         $skip_status = true;
         
         while( $i < $count ){
             
-            $responce = $this->conn->get('followers/list', compact('cursor', 'screen_name','skip_status'));
-            var_dump($responce);
-            if( ! count($responce->users) ){
+            $response = $this->conn->get('followers/ids', compact('cursor', 'screen_name','skip_status'));
+            
+            echo 'ids dump';
+            var_dump($response);
+            
+            if( ! count($response->users) ){
                 
                 //we have nothing to save now
                 break;
             }
             
-            $cursor = $responce->next_cursor_str;
+            $cursor = $response->next_cursor_str;
             
-            foreach( $responce->users as $u ){
+            foreach( $response->users as $u ){
                 
                 if( $i < $count )
                     $list[] = $u;
