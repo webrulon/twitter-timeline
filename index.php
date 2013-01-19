@@ -66,7 +66,7 @@
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+                    <input type="text" name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
             
