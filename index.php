@@ -53,7 +53,7 @@
             $follower = $twitter->get_follower('all');
             
             //extract all screen_name
-            $screen_name = array();
+            $screen_names = array();
             foreach($follower as $f){
                 $screen_name = $f->screen_name;
             }
@@ -62,7 +62,7 @@
         <form class="form-horizontal">
             <div id="responce_err" class="alert-error hide">Oops, There is a problem, try later</div>
             <label>Load Tweet</label>
-            <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($follower) ?>' >
+            <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
         </form>
         
         <?php
