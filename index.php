@@ -70,14 +70,13 @@
             $rand = array();
             $select_min = min( count($follower) , 10);
             
-            if( $select_min > 0 )
+            //printing the list of random user
+            if( $select_min > 0 ){
+                
                 $rand = array_rand($follower,
                         //dont ask more tweet that catually their are
                         $select_min
                 );
-            
-            //printing the list of random user
-            if( $select_min > 0 ){
                 
                 foreach($rand as $i){
                     printf("<li>%s</li>", $follower[$i]);

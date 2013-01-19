@@ -168,7 +168,7 @@ class Twitter{
             
             foreach( $id_chunk as $id_c ){
 
-                $data = $this->conn->post('users/lookup', array(
+                $data = $this->conn->get('users/lookup', array(
                     'user_id' => implode( ',', $id_c )
                 ) );
 
