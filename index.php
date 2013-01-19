@@ -55,7 +55,7 @@
             //extract all screen_name
             $screen_names = array();
             foreach($follower as $f){
-                $screen_name = $f->screen_name;
+                $screen_names = $f->screen_name;
             }
             //printing form for taking input
         ?>
