@@ -50,7 +50,13 @@
         <h3>10 Random Followers</h3>
         <?php
             
-            $follower = $twitter->userobj_To_sn_fn( $twitter->get_follower('all') );
+            $follower = $twitter->get_follower('all');
+            
+            //extract all screen_name
+            $screen_name = array();
+            foreach($follower as $f){
+                $screen_name = $f->screen_name;
+            }
             //printing form for taking input
         ?>
         <form class="form-horizontal">
@@ -75,8 +81,8 @@
                 );
                 
                 echo '<ol>';
-                foreach($rand as $i){
-                    printf("<li>%s</li>", $follower[$i]);
+                foreach($rand as $f){
+                    printf("<li>@%s: %s</li>", $f->screen_name, $f->name);
                 }
                 
                 echo '</ol>';

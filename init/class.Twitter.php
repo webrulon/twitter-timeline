@@ -126,26 +126,6 @@ class Twitter{
     }
     
     /*
-     * convert a user objects to just array( screen_name => full_name, .... )
-     * 
-     * @param objs user objects to convert
-     * 
-     * @return modified user objects
-     */
-    
-    function userobj_To_sn_fn( $objs ){
-        
-        $new = array();
-        
-        foreach( $objs as $obj ){
-            $new[$obj->screen_name] = $obj->name;
-        }
-        
-        return $new;
-        
-    }
-    
-    /*
      * do a user/users lookup
      * 
      * @param id array or single id of user to lookup
