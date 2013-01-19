@@ -169,7 +169,7 @@ class Twitter{
             foreach( $id_chunk as $id_c ){
 
                 $data = $this->conn->post('users/lookup', array(
-                    'user_id' => array_join( ',', $id_c )
+                    'user_id' => array_implode( ',', $id_c )
                 ) );
 
                 $lookup = array_merge( (array)$lookup, (array)$data);
