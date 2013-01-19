@@ -41,3 +41,7 @@ define('TWITTER_SECRET','VHzDgHdZ4bXo7dgrOC1gtzL99a63Jq7uqsidpC8E8');
 define('TWITTER_LANDPAGE', ABSPATH . DS . 'index.php');
 define('TWITTER_CALLBACK', ABSPATH . DS . 'callback.php');
 define('TWITTER_LOGIN', ABSPATH . DS . 'connect.php');
+
+define('TWITTER_API_URL', 'https://api.twitter.com/1.1/');
+define('TWITTER_MAX_ID_FETCHED', 5000);
+define('TWITTER_MAX_USER_LOOKUP', 100);

@@ -7,7 +7,7 @@ include_once _LIB . DS . 'twitteroauth/twitteroauth.php';
 class TwitterOAuth1dot1 extends TwitterOAuth{
     
     /* modifiying for twitter new api 1.1 */
-    public $host = "https://api.twitter.com/1.1/";
+    public $host = TWITTER_API_URL;
 }
 
 class Twitter{
@@ -99,13 +99,20 @@ class Twitter{
      * 
      * @param count maximum number of followers to fetch (optional)(default "all")
      * @param screen_name screen-name of user whose follower to fetch(optional)
+     * 
+     * @return users object
      */
     
     function get_follower($count = 'all' , $screen_name = NULL){
         
-        var_dump($_SESSION);
+        /*
+         * load all followers id
+         * it is better than loading single 20 list using followers/list
+         */
         
-        if( $count == 'all' ){
+        //if we want to load more follower than actually exists then cap it
+        if( $count == 'all' OR $count > $this->user->followers_count ){
+            
             $count = $this->user->followers_count;
         }
         
@@ -113,39 +120,109 @@ class Twitter{
             $screen_name = $this->user->screen_name;
         }
         
-        $list = array();
-        $i = 0;
-        $cursor = '0';
-        $response = NULL;
+        $followers_id = $this->followers_id( $screen_name, $count );
         
-        $skip_status = true;
+        return $this->user_lookup($followers_id);
+    }
+    
+    /*
+     * convert a user objects to just array( screen_name => full_name, .... )
+     * 
+     * @param objs user objects to convert
+     * 
+     * @return modified user objects
+     */
+    
+    function userobj_To_sn_fn( $objs ){
         
-        while( $i < $count ){
-            
-            $response = $this->conn->get('followers/list', compact('cursor', 'screen_name','skip_status'));
-            
-            var_dump($response);
-            
-            if( ! count($response->users) ){
-                
-                //we have nothing to save now
-                break;
-            }
-            
-            $cursor = $response->next_cursor_str;
-            
-            foreach( $response->users as $u ){
-                
-                if( $i < $count )
-                    $list[] = $u;
-                else
-                    break;
-                
-                $i++;
-            }
+        $new = array();
+        
+        foreach( $objs as $obj ){
+            $new[$obj->screen_name] = $obj->name;
         }
         
-        return $list;
+        return $new;
+        
+    }
+    
+    /*
+     * do a user/users lookup
+     * 
+     * @param id array or single id of user to lookup
+     * 
+     * @return
+     *  single id: user object
+     *  array id: user object collection
+     * 
+     */
+    
+    function user_lookup( $id ){
+    
+        if( is_array( $id ) ){
+            //vola, an array of id's
+            //
+            //do lookup for all id's
+            $id_chunk = array_chunk( $id, TWITTER_MAX_USER_LOOKUP );
+            
+            $lookup = array();
+            
+            foreach( $id_chunk as $id_c ){
+
+                $data = $this->conn->post('users/lookup', array(
+                    'user_id' => array_join( ',', $id_c )
+                ) );
+
+                $lookup = array_merge( (array)$lookup, (array)$data);
+            }
+            
+            return $lookup;
+            
+        } else {
+            
+            //assuming it as single id
+            $data = $this->conn->get('users/lookup', array(
+                    'user_id' => $id
+            ) );
+            
+            return $data[0];
+        }
+        
+    }
+    
+    /*
+     * get the array of follower id of a specific user
+     * 
+     * @param screen_name: name of the user whose followers id to fetch
+     * @param limit : max number of followers id to return
+     * 
+     * @return array of id's
+     */
+    
+    function followers_id( $screen_name, $limit = TWITTER_MAX_ID_FETCHED ){
+        
+        $followers_id = array();
+        $cursor = '-1';
+        
+        //if followers count exceed max fetcable id's then download them in partitions
+        for( $i = 0; $i < ceil( $limit / TWITTER_MAX_ID_FETCHED ); $i++ ){
+
+            $request = $this->conn->get('followers/ids', compact('screen_name','cursor') );
+            
+            $followers_id = array_merge( (array)$followers_id, (array)$request->ids );
+            
+            $cursor = $request->next_cursor;
+        }
+        
+        /*
+         * how many followers we need
+         */
+        if( $limit > count( $followers_id ) ){
+            
+            //select some random followers
+            $followers_id = array_rand($followers_id, $count);
+        }
+        
+        return $followers_id;
     }
     
     /*

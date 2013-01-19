@@ -49,27 +49,8 @@
         <?php // get followers ?>
         <h3>10 Random Followers</h3>
         <?php
-        
-            $follower_recv = $twitter->get_follower('all');
             
-            //break the array into what we need
-            $follower = array();
-            foreach( $follower_recv as $f ){
-                $follower[$f->username] = $f->name;
-            }
-            unset($follower_recv);
-            
-            //get random follower
-            $num_of_rand = min( count($follower) , 10);
-            
-            $rand = array();
-            
-            if( $num_of_rand > 0 )
-                $rand = array_rand($follower,
-                        //dont ask more tweet that catually their are
-                        $num_of_rand
-                );
-            
+            $follower = $twitter->userobj_To_sn_fn( $twitter->get_follower('all') );
             //printing form for taking input
         ?>
         <form class="form-horizontal">
@@ -80,8 +61,21 @@
         
         <ol>
         <?php
+        
+            //get random follower
+            //how many followers does the visitor have
+            $rand = array();
+            $select_min = min( count($follower) , 10);
+            
+            if( $select_min > 0 )
+                $rand = array_rand($follower,
+                        //dont ask more tweet that catually their are
+                        $select_min
+                );
+            
             //printing the list of random user
-            if( $num_of_rand > 0 ){
+            if( $select_min > 0 ){
+                
                 foreach($rand as $i){
                     printf("<li>%s</li>", $follower[$i]);
                 }
