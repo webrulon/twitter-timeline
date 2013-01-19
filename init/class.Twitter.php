@@ -136,7 +136,7 @@ class Twitter{
      * 
      */
     
-    function user_lookup( $id ){
+    function user_lookup( $id, $include_entities = false ){
     
         if( is_array( $id ) ){
             //vola, an array of id's
@@ -149,7 +149,8 @@ class Twitter{
             foreach( $id_chunk as $id_c ){
 
                 $data = $this->conn->get('users/lookup', array(
-                    'user_id' => implode( ',', $id_c )
+                    'user_id' => implode( ',', $id_c ),
+                    'include_entities' => $include_entities
                 ) );
 
                 $lookup = array_merge( (array)$lookup, (array)$data);
@@ -161,7 +162,8 @@ class Twitter{
             
             //assuming it as single id
             $data = $this->conn->get('users/lookup', array(
-                    'user_id' => $id
+                    'user_id' => $id,
+                    'include_entities' => $include_entities
             ) );
             
             return $data[0];

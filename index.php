@@ -81,9 +81,9 @@
                 );
                 
                 echo '<ol>';
-                var_dump($follower, $rand);
+                
                 foreach($rand as $id){
-                    printf("<li>@%s: %s</li>", $follower[$id]->screen_name, $f[$id]->name);
+                    printf("<li>@%s: %s</li>", $follower[$id]->screen_name, $follower[$id]->name);
                 }
                 
                 echo '</ol>';
