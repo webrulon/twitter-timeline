@@ -50,10 +50,7 @@
         <h3>10 Random Followers</h3>
         <?php
             
-            $follower_obj = $twitter->get_follower('all');
-            var_dump($follower_obj);
-            
-            $follower = $twitter->userobj_To_sn_fn( $follower_obj );
+            $follower = $twitter->userobj_To_sn_fn( $twitter->get_follower('all') );
             //printing form for taking input
         ?>
         <form class="form-horizontal">
@@ -62,7 +59,6 @@
             <input name="_user" id="_user" data-provide="typeahead" data-source='<?php echo json_encode($follower) ?>' >
         </form>
         
-        <ol>
         <?php
         
             //get random follower
@@ -78,12 +74,16 @@
                         $select_min
                 );
                 
+                echo '<ol>';
                 foreach($rand as $i){
                     printf("<li>%s</li>", $follower[$i]);
                 }
+                
+                echo '</ol>';
+            } else {
+                echo '<p class="alert-info">pretty bad , no follower till now</p>';
             }
         ?>
-        </ol>
     </div>
 </div>
 <?php $theme->elem('footer'); ?>

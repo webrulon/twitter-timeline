@@ -30,10 +30,14 @@ function load_tweets(item){
             $('#responce_err').hide();
         }
     });
+
+    return item;
 }
 
 function inert_tweet_into_carousal(data){
-
+    
+    alert("ready to enter in carousal");
+    
     $('#responce_err').hide();
 
     $t = $('#user-tweet');
