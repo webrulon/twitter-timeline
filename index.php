@@ -57,11 +57,11 @@
         ?>
         <div class="form-horizontal">
             <div id="ajax-responce">
-                <div class="alert-error hide">
+                <div class="alert alert-error hide">
                     Oops, There is a problem, try later
                     <a class="close" data-dismiss="alert" href="#">&times;</a>
                 </div>
-                <div class="alert-info hide">
+                <div class="alert alert-info hide">
                     Please Wait, Loading Tweets...
                     <a class="close" data-dismiss="alert" href="#">&times;</a>
                 </div>

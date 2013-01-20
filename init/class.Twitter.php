@@ -84,6 +84,10 @@ class Twitter{
      * 
      * @param count number of tweets
      * @param screen_name name of the user whose tweets to fetch, (option)
+     * 
+     * NOTE: "all" tweet option is not applied
+     * 
+     * @return tweet array
      */
     function get_tweet($count, $screen_name = NULL){
         
