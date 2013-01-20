@@ -18,18 +18,14 @@
 </div>
 
 <div class="row-fluid">
-    <div class="offset3 span6">
-        <div><img src="<?php echo $profile->profile_image_url ?>"></div>
-        <div><?php echo $profile->name ?></div>
-    </div>
-</div>
-
-<div class="row-fluid">
     <div class="span6 offset3">
+        <div>
+            <div><img src="<?php echo $profile->profile_image_url ?>"></div>
+            <div><?php echo $profile->name ?></div>
+        </div>
+        
         <?php // get tweets ?>
-        <h3>Latest 10 Tweets</h3>
-        <p><a target="_blank" href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="btn btn-primary">Download as pdf</a></p>
-            
+        <h3>Latest 10 Tweets <a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="label-info">Download as PDF</a></h3>            
         <?php
             //for carousel
             $tweet = $twitter->get_tweet(10);
@@ -37,7 +33,7 @@
         <div id="user-tweet">
             <div class="carousel-inner">
                 <?php foreach( $tweet as $t ): ?>
-                    <div class="item"><p><?php echo $t->text ?></p></div>
+                    <p class="item"><?php echo $t->text ?></p>
                 <?php endforeach; ?>
             </div>
             <a class="carousel-control left" href="#user-tweet" data-slide="prev">&lsaquo;</a>
