@@ -17,6 +17,8 @@ $(document).ready(function (){
 
 function load_tweets( screen_name ){
     
+    console.log("loading tweets")
+    
     //hide error message
     $('#ajax_responce div')
             .hide();
@@ -59,7 +61,7 @@ function load_tweets( screen_name ){
 
 function insert_tweet_into_carousal( tweets ){
     
-    alert("ready to enter in carousal");
+    console.log("tweets received , inserting to carousal");
     
     $('#ajax_responce div')
             .hide();

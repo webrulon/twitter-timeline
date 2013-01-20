@@ -65,7 +65,7 @@
                 <div class="alert-info hide">Please Wait, Loading Tweets...</div>
             </div>
             
-            <div class='control-group'>
+            <div class="control-group">
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
