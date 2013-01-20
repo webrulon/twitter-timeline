@@ -17,7 +17,11 @@ class Twitter{
     private $user = NULL;
     
     /*
-     * is the user login'ed
+     * is the visitor login'ed
+     * 
+     * @return boolean
+     * visitor logined, true
+     * visitor not logined, false
      */
     
     function is_unauthed(){
@@ -26,7 +30,8 @@ class Twitter{
     }
     
     /*
-     * only allow authed users
+     * only allow authed visitor
+     * if found unauthed, visitor session clear and goto connect page
      */
     function only_authed(){
         if( $this->is_unauthed() ){
@@ -35,6 +40,8 @@ class Twitter{
     }
     /*
      * get URI for login
+     * 
+     * @return authentication url
      */
     
     function login_url(){
@@ -54,6 +61,8 @@ class Twitter{
      * only used by access_token / retreving after verified
      * 
      * if verified, return the profile
+     * 
+     * @return authorized visitor profile
      */
     
     function connect(){
@@ -85,7 +94,7 @@ class Twitter{
      * @param count number of tweets
      * @param screen_name name of the user whose tweets to fetch, (option)
      * 
-     * NOTE: "all" tweet option is not applied
+     * NOTE: "all" tweet option to count is not applied
      * 
      * @return tweet array
      */
@@ -101,10 +110,8 @@ class Twitter{
     /*
      * get followers
      * 
-     * @param count maximum number of followers to fetch (optional)(default "all")
-     * @param screen_name screen-name of user whose follower to fetch(optional)
-     * 
-     * 
+     * @param count: maximum number of followers to fetch (optional)(default "all")
+     * @param screen_name: screen-name of user whose follower to fetch(optional)
      * 
      * @return users object
      */
@@ -235,6 +242,8 @@ class Twitter{
     
     /*
      * clear the session
+     * 
+     * @return VOID
      */
     
     function clear(){
@@ -243,6 +252,11 @@ class Twitter{
         exit();
     }
     
+    
+    /*
+     * specially made for callback.php
+     * when twitter redirect, this page visited
+     */
     function callback(){
         /* If the oauth_token is old redirect to the connect page. */
         if (isset($_REQUEST['oauth_token']) && $_SESSION['request_token']['oauth_token'] !== $_REQUEST['oauth_token']) {

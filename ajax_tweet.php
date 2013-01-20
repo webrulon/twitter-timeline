@@ -1,5 +1,11 @@
 <?php
     /*
+     * this file is called by index page
+     * it will respond to ajax call's
+     * @request screen_name (optional)
+     */
+    
+    /*
      * load the baseapp bootstrap
      */
 

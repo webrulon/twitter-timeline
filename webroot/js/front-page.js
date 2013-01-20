@@ -9,6 +9,10 @@ var $ut = null;
 var $utin = null;
 /* ajax responce children */
 var $ajrpc = null;
+/* download as pdf tweet btn */
+var $dpdf = null;
+
+var last_screen_name = null;
 
 $(document).ready(function (){
     
@@ -16,6 +20,7 @@ $(document).ready(function (){
     $ut = $('#user-tweet');
     $utin = $ut.children(".carousel-inner");
     $ajrpc = $('#ajax-responce div');
+    $dpdf = $('#download-pdf');
     
     //init the screen_name input
     $inpsn.typeahead({
@@ -29,7 +34,6 @@ $(document).ready(function (){
     //init carousal
     $utin.children().first().addClass('active');
     $ut.carousel();
-    
 });
 
 function load_tweets( screen_name ){
@@ -49,6 +53,8 @@ function load_tweets( screen_name ){
             $inpsn.prop('disabled', true);
             
             $ajrpc.hide().filter('.alert-info').show();
+            
+            last_screen_name = screen_name;
         },
             
         complete: function(){
@@ -87,4 +93,6 @@ function insert_tweet_into_carousal( tweets ){
     $utin.children().first().addClass('active');
     //start the carousal
     $ut.carousel('cycle');
+    
+    $dpdf[0].href.search = 'screen_name=' + last_screen_name;
 }

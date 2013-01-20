@@ -1,6 +1,8 @@
 <?php
+    /*
+     * this page is redirect by twitter after authorization
+     */
 
-require_once 'init/bootloader.php';
+    require_once 'init/bootloader.php';
 
-$twitter->callback();
-?>
+    $twitter->callback();

@@ -1,15 +1,28 @@
 <?php
 
 class Theme{
+    
+    /*
+     * var array
+     * use to store the css that will be dumped at the footer
+     */
+    private $css_coln = array();
+    
+    /*
+     * var array
+     * use to store the js that will be dumped at the footer
+     */
+    private $js_coln = array();
+    
     /*
      * load a js file using script tag
-     * @param filename name of the file to be loaded as javascript
-     * @param dir path of the directory
-     * @param ext extension of the file, in case using dynamically generated script
+
+     * @param filename: name of the file to be loaded as javascript
+     * @param dir: path of the directory( default : WEBROOT_JS )
+     * @param ext extension of the file, in case using dynamically generated script( default: EXT_JS )
+     * 
+     * @return VOID
      */
-    
-    private $css_coln = array();
-    private $js_coln = array();
     
     function js( $filename, $dir = WEBROOT_JS, $ext = EXT_JS ){
         ?>
@@ -21,9 +34,11 @@ class Theme{
      * get the url of the file
      * this is used by files
      * 
-     * @param filename name of the file to be loaded as javascript
-     * @param dir path of the directory
-     * @param ext extension of the file, in case using dynamically generated script
+     * @param filename: name of the file to be loaded as javascript
+     * @param dir: path of the directory( default: WEBRROOT_CSS )
+     * @param ext: extension of the file, in case using dynamically generated script( default: EXT_CSS )
+     * 
+     * @return VOID
      */
     
     function css( $filename, $dir = WEBROOT_CSS, $ext =  EXT_CSS  ){
@@ -35,13 +50,15 @@ class Theme{
     /*
      * get the header part of the site
      * 
-     * @param name name of the element to include
-     * @param ext extension of file, default php
+     * @param name: name of the element to include
+     * @param dir: directory where the element is located, ( default: _ELEMENT )
+     * @param ext: extension of file, default php
      * 
-     * @return NOTHING
+     * @return VOID
      */
 
     function elem( $name , $var = array(), $dir = _ELEMENT, $ext = EXT_PHP ){
+        
         global $theme, $twitter;
         
         extract($var);
@@ -49,17 +66,28 @@ class Theme{
         return include( $dir .DS . $name . DOT . $ext );
     }
     
+    /*
+     * store the js link and dump it at footer
+     * identical input as js()
+     */
+    
     function js_footer($filename, $dir = WEBROOT_JS, $ext = EXT_JS){
         $this->js_coln[] = array( $filename, $dir, $ext);
     }
     /*
      * these are used to dump css file link at footer
      * instead of middle of content
+     * identical param as css()
      */
     function css_footer($filename, $dir = WEBROOT_CSS, $ext =  EXT_CSS){
         $this->css_coln[] = array( $filename, $dir, $ext);
     }
     
+    /*
+     * dump the css and js file tag to footer
+     * 
+     * @return VOID
+     */
     function dump_footer(){
         
         foreach( $this->css_coln as $css ){
