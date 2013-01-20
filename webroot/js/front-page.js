@@ -1,44 +1,66 @@
 $(document).ready(function (){
     
     //hide error message
-    $('#responce_err').hide();
+    $('#ajax_responce div').hide();
     
     //init carousal
-    $('#user-tweet .item').first().addClass('active');
+    $('#user-tweet .carousel-inner:first-child').addClass('active');
     $('#user-tweet').carousel();
     
     //load the input with typehead
-    $('#_screen_name').typeahead({
+    $('#screen_name').typeahead({
         updater: load_tweets
     });
 });
 
-function load_tweets(item){
+function load_tweets( screen_name ){
+    
+    //hide error message
+    $('#ajax_responce div')
+            .hide();
+    
     //query using ajax
     $.ajax('/ajax_tweet.php',{
+        
         cache: false,
+        
         data: {
-            'username': item
+            screen_name: screen_name
         },
-
+        
+        async: false,
+        
         type: 'GET',
         
         dataType: 'json',
         
         success: insert_tweet_into_carousal,
+        
+        beforeSend: function(){
+            $('#ajax_responce div')
+                    .hide()
+                    .has('.alert-info')
+                    .show();
+        },
+        
         error: function (){
-            $('#responce_err').hide();
+            $('#ajax_responce div')
+                    .hide()
+                    .has('.alert-error')
+                    .show();
         }
     });
-
-    return item;
+    
+    //return so that the input can have its value
+    return screen_name;
 }
 
-function insert_tweet_into_carousal(data){
+function insert_tweet_into_carousal( tweets ){
     
     alert("ready to enter in carousal");
     
-    $('#responce_err').hide();
+    $('#ajax_responce div')
+            .hide();
 
     $t = $('#user-tweet');
     $tin = $t.children('.carousel-inner');
@@ -47,8 +69,8 @@ function insert_tweet_into_carousal(data){
     $t.carousel('pause');
     $tin.empty();
 
-    $.each(data, function(i, tw){
-        $tin.append('<div class="item">' + tw + '</div>');
+    $.each(tweets, function(i, tweet){
+        $tin.append('<div class="item">' + tweet + '</div>');
     });
 
     //start the carousal

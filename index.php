@@ -55,18 +55,21 @@
             //extract all screen_name
             $screen_names = array();
             foreach($follower as $f){
-                $screen_names[] = $f->screen_name;
+                $screen_names[] = strtolower($f->screen_name);
             }
             //printing form for taking input
         ?>
         <div class="form-horizontal">
-            <div id="responce_err" class="alert-error hide">Oops, There is a problem, try later</div>
+            <div id="ajax_responce">
+                <div class="alert-error hide">Oops, There is a problem, try later</div>
+                <div class="alert-info hide">Please Wait, Loading Tweets...</div>
+            </div>
             
             <div class='control-group'>
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input type="text" name="_screen_name" id="_screen_name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+                    <input type="text" name="screen_name" id="screen_name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
             
@@ -90,11 +93,13 @@
                 echo '<ol>';
                 
                 foreach($rand as $id){
-                    printf("<li>@%s: %s</li>", $follower[$id]->screen_name, $follower[$id]->name);
+                    echo '<li>@' . $follower[$id]->screen_name . ': ' . $follower[$id]->name . '</li>';    
                 }
                 
                 echo '</ol>';
+                
             } else {
+                
                 echo '<p class="alert-info">pretty bad , no follower till now</p>';
             }
         ?>

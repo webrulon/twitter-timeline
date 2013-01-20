@@ -7,7 +7,7 @@
     
     $twitter->only_authed();
     
-    if( empty($_REQUEST['username']) ){
+    if( empty($_REQUEST['screen_name']) ){
         
         //dont waste resource
         ?>{error: "username empty"}<?php
@@ -17,9 +17,9 @@
     $twitter->connect();
     
     //take precaution for getting input from outside world
-    $username = strval($_REQUEST['username']);
+    $screen_name = strval($_REQUEST['screen_name']);
     
-    $tweet = $twitter->get_tweet(10, $username );
+    $tweet = $twitter->get_tweet(10, $screen_name );
 
     //only send what asked, every bit matters
     $tweet_send = array();
