@@ -11,7 +11,7 @@ $(document).ready(function (){
     
     //load the input with typehead
     $('#screen_name').typeahead({
-        updater: load_tweets
+        //updater: load_tweets
     });
 });
 
