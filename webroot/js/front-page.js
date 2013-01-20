@@ -36,17 +36,10 @@ function load_tweets( screen_name ){
     $.ajax('/ajax_tweet.php',{
         
         cache: false,
-        
-        data: {
-            screen_name: screen_name
-        },
-        
+        data: { screen_name: screen_name },
         async: false,
-        
-        type: 'GET',
-        
+        type: 'GET',       
         dataType: 'json',
-        
         success: insert_tweet_into_carousal,
         
         beforeSend: function(){
@@ -57,7 +50,7 @@ function load_tweets( screen_name ){
             
             $ajrpc.hide().has('.alert-info').show();
         },
-        
+            
         complete: function(){
     
             $inpsn.prop('disabled', false);
