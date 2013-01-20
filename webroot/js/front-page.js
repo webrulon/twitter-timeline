@@ -1,3 +1,4 @@
+"use strict";
 
 /* this variable are made so that each time jquery search is not preformed */
 /* input screen_name element */
