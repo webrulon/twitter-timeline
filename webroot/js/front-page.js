@@ -84,6 +84,7 @@ function insert_tweet_into_carousal( tweets ){
         $utin.append('<div class="item">' + tweet + '</div>');
     });
 
+    $utin.children().first().addClass('active');
     //start the carousal
     $ut.carousel('cycle');
 }
