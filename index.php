@@ -57,15 +57,21 @@
         ?>
         <div class="form-horizontal">
             <div id="ajax-responce">
-                <div class="alert-error hide">Oops, There is a problem, try later</div>
-                <div class="alert-info hide">Please Wait, Loading Tweets...</div>
+                <div class="alert-error hide">
+                    Oops, There is a problem, try later
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
+                <div class="alert-info hide">
+                    Please Wait, Loading Tweets...
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
             </div>
             
             <div class="control-group">
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input type="text" id="screen-name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+                    <input type="text" id="screen-name" data-provide="typeahead" data-updater="load_tweets" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
         </div>

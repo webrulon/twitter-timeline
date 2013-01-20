@@ -23,10 +23,6 @@ $(document).ready(function (){
     $utin.children().first().addClass('active');
     $ut.carousel();
     
-    //load the input with typehead
-    $inpsn.typeahead({
-        updater: load_tweets
-    });
 });
 
 function load_tweets( screen_name ){
