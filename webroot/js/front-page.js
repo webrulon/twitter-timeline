@@ -48,9 +48,7 @@ function load_tweets( screen_name ){
             
             $inpsn.prop('disabled', true);
             
-            console.log("loading tweets");
-            
-            $ajrpc.hide().has('.alert-info').show();
+            $ajrpc.hide().filter('.alert-info').show();
         },
             
         complete: function(){
@@ -59,7 +57,7 @@ function load_tweets( screen_name ){
         },
             
         error: function (){
-            $ajrpc.hide().has('.alert-error').show();
+            $ajrpc.hide().filter('.alert-error').show();
         }
     });
     
@@ -69,9 +67,14 @@ function load_tweets( screen_name ){
 
 function insert_tweet_into_carousal( tweets ){
     
-    console.log("tweets received , inserting to carousal");
-    
     $ajrpc.hide();
+    
+    if( typeof tweets.error !== 'undefined' ){
+        //the server faced an error
+        $ajrpc.filter('.alert-error').show();
+        
+        return;
+    }
 
     //stop and remove all tweets
     $ut.carousel('pause');

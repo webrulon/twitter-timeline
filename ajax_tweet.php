@@ -5,6 +5,8 @@
 
     require_once 'init/bootloader.php';
     
+    header('Content-type: application/json');
+    
     $twitter->only_authed();
     
     if( empty($_REQUEST['screen_name']) ){
@@ -25,13 +27,18 @@
     
     $tweet = $twitter->get_tweet(10, $screen_name );
     
+    if( isset( $tweet->error ) ){
+        
+        //we received an error, pass it to client
+        echo json_encode($tweet);
+        exit();
+    }
+    
     //only send what asked, every bit matters
     $tweet_send = array();
     
     foreach( $tweet as $t){
         $tweet_send[] = $t->text;
     }
-    
-    header('Content-type: application/json');
     
     echo json_encode($tweet_send);
