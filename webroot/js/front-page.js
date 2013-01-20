@@ -1,27 +1,36 @@
 "use strict";
 
+/* this variable are made so that each time jquery search is not preformed */
+/* input screen_name element */
+var $inpsn = null;
+/* #user-tweet */
+var $ut = null;
+/* #user-tweet inner */
+var $utin = null;
+/* ajax responce children */
+var $ajrpc = null;
+
 $(document).ready(function (){
     
+    $inpsn = $('#screen_name');
+    $ut = $('#user-tweet');
+    $utin = $ut.children(".carousel-inner");
+    $ajrpc = $('#ajax_responce div');
+    
     //hide error message
-    $('#ajax_responce div').hide();
+    $ajrpc.hide();
     
     //init carousal
-    $('#user-tweet .carousel-inner:first-child').addClass('active');
-    $('#user-tweet').carousel();
+    $utin.children().first().addClass('active');
+    $ut.carousel();
     
     //load the input with typehead
-    $('#screen_name').typeahead({
-        //updater: load_tweets
+    $inpsn.typeahead({
+        updater: load_tweets
     });
 });
 
 function load_tweets( screen_name ){
-    
-    console.log("loading tweets")
-    
-    //hide error message
-    $('#ajax_responce div')
-            .hide();
     
     //query using ajax
     $.ajax('/ajax_tweet.php',{
@@ -41,17 +50,21 @@ function load_tweets( screen_name ){
         success: insert_tweet_into_carousal,
         
         beforeSend: function(){
-            $('#ajax_responce div')
-                    .hide()
-                    .has('.alert-info')
-                    .show();
+            
+            $inpsn.prop('disabled', true);
+            
+            console.log("loading tweets");
+            
+            $ajrpc.hide().has('.alert-info').show();
         },
         
+        complete: function(){
+    
+            $inpsn.prop('disabled', false);
+        },
+            
         error: function (){
-            $('#ajax_responce div')
-                    .hide()
-                    .has('.alert-error')
-                    .show();
+            $ajrpc.hide().has('.alert-error').show();
         }
     });
     
@@ -63,20 +76,16 @@ function insert_tweet_into_carousal( tweets ){
     
     console.log("tweets received , inserting to carousal");
     
-    $('#ajax_responce div')
-            .hide();
-
-    $t = $('#user-tweet');
-    $tin = $t.children('.carousel-inner');
+    $ajrpc.hide();
 
     //stop and remove all tweets
-    $t.carousel('pause');
-    $tin.empty();
+    $ut.carousel('pause');
+    $utin.empty();
 
     $.each(tweets, function(i, tweet){
-        $tin.append('<div class="item">' + tweet + '</div>');
+        $utin.append('<div class="item">' + tweet + '</div>');
     });
 
     //start the carousal
-    $t.carousel('cycle');
+    $ut.carousel('cycle');
 }

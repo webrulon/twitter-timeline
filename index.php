@@ -72,7 +72,6 @@
                     <input type="text" name="screen_name" id="screen_name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
-            
         </div>
         
         <?php
