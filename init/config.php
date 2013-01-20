@@ -45,3 +45,4 @@ define('TWITTER_LOGIN', ABSPATH . DS . 'connect.php');
 define('TWITTER_API_URL', 'https://api.twitter.com/1.1/');
 define('TWITTER_MAX_ID_FETCHED', 5000);
 define('TWITTER_MAX_USER_LOOKUP', 100);
+define('TWITTER_MAX_TWEET_FETCH', 200);

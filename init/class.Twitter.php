@@ -92,7 +92,6 @@ class Twitter{
         }
         
         return $this->conn->get('statuses/user_timeline', compact('count','screen_name'));
-        
     }
     
     /*
@@ -191,7 +190,10 @@ class Twitter{
         $followers_id = array();
         $cursor = '-1';
         $i = 0;
-        $i_max = ceil( $count / TWITTER_MAX_ID_FETCHED );
+        
+        $i_max = 0;
+        if( $count != 'all' )
+            $i_max = ceil( $count / TWITTER_MAX_ID_FETCHED );
         
         //if followers count exceed max fetcable id's then download them in partitions
         while( true ){
