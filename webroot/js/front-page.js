@@ -16,6 +16,12 @@ $(document).ready(function (){
     $utin = $ut.children(".carousel-inner");
     $ajrpc = $('#ajax-responce div');
     
+    //init the screen_name input
+    $inpsn.typeahead({
+        source: $inpsn.data("source"),
+        updater: load_tweets
+    });
+    
     //hide error message
     $ajrpc.hide();
     
