@@ -44,7 +44,7 @@
                       <div class="nav-collapse collapse">
                           <ul class="nav">
                               <li class=pull-right">
-                                  <a href="logout.php">Logout</a>
+                                  <a href="javascript:alert('Experimental Project, Go Further at your own risk')">About</a>
                               </li>
                           </ul>
                       </div>
