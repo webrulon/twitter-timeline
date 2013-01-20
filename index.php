@@ -55,12 +55,12 @@
             //extract all screen_name
             $screen_names = array();
             foreach($follower as $f){
-                $screen_names[] = strtolower($f->screen_name);
+                $screen_names[] = $f->screen_name;
             }
             //printing form for taking input
         ?>
         <div class="form-horizontal">
-            <div id="ajax_responce">
+            <div id="ajax-responce">
                 <div class="alert-error hide">Oops, There is a problem, try later</div>
                 <div class="alert-info hide">Please Wait, Loading Tweets...</div>
             </div>
@@ -69,7 +69,7 @@
                 <label>Load Tweet</label>
                 <div class="input-prepend">
                     <span class="add-on">@</span>
-                    <input type="text" name="screen_name" id="screen_name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
+                    <input type="text" id="screen-name" data-provide="typeahead" data-source='<?php echo json_encode($screen_names) ?>' >
                 </div>
             </div>
         </div>

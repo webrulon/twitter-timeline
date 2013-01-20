@@ -12,10 +12,10 @@ var $ajrpc = null;
 
 $(document).ready(function (){
     
-    $inpsn = $('#screen_name');
+    $inpsn = $('#screen-name');
     $ut = $('#user-tweet');
     $utin = $ut.children(".carousel-inner");
-    $ajrpc = $('#ajax_responce div');
+    $ajrpc = $('#ajax-responce div');
     
     //hide error message
     $ajrpc.hide();
