@@ -19,9 +19,11 @@
     //take precaution for getting input from outside world
     $screen_name = (string)$_REQUEST['screen_name'];
     
+    
+    //NOTE: tweets may not load because , the app is not authz to get data
+    //      it happen in some cases
+    
     $tweet = $twitter->get_tweet(10, $screen_name );
-
-    var_dump($tweet);
     
     //only send what asked, every bit matters
     $tweet_send = array();

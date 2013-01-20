@@ -90,6 +90,7 @@ class Twitter{
         if( $screen_name == NULL ){
             $screen_name = $this->user->screen_name;
         }
+        
         return $this->conn->get('statuses/user_timeline', compact('count','screen_name'));
         
     }
@@ -99,6 +100,8 @@ class Twitter{
      * 
      * @param count maximum number of followers to fetch (optional)(default "all")
      * @param screen_name screen-name of user whose follower to fetch(optional)
+     * 
+     * 
      * 
      * @return users object
      */
@@ -110,17 +113,7 @@ class Twitter{
          * it is better than loading single 20 list using followers/list
          */
         
-        //if we want to load more follower than actually exists then cap it
-        if( $count == 'all' OR $count > $this->user->followers_count ){
-            
-            $count = $this->user->followers_count;
-        }
-        
-        if( $screen_name == NULL ){
-            $screen_name = $this->user->screen_name;
-        }
-        
-        $followers_id = $this->followers_id( $screen_name, $count );
+        $followers_id = $this->followers_id( $count, $screen_name );
         
         return $this->user_lookup($followers_id);
     }
@@ -128,12 +121,11 @@ class Twitter{
     /*
      * do a user/users lookup
      * 
-     * @param id array or single id of user to lookup
+     * @param id array or single id of user to lookup, ( array(ids) or id or screen_name )
      * 
      * @return
-     *  single id: user object
-     *  array id: user object collection
-     * 
+     *  single id or screen_name: user object
+     *  array ids: user object collection
      */
     
     function user_lookup( $id, $include_entities = false ){
@@ -160,48 +152,76 @@ class Twitter{
             
         } else {
             
+            $var = array( 'include_entities' => $include_entities );
+            
+            if( is_int($id) ){
+                
+                //assuming it as user_id
+                $var['user_id'] = $id;
+                
+            } else {
+                
+                //assuming it as screen_name
+                $var['screen_name'] = $id;
+                
+            }
+            
             //assuming it as single id
-            $data = $this->conn->get('users/lookup', array(
-                    'user_id' => $id,
-                    'include_entities' => $include_entities
-            ) );
+            $data = $this->conn->get('users/lookup', $var );
             
             return $data[0];
         }
-        
     }
     
     /*
      * get the array of follower id of a specific user
      * 
+     * @param count : max number of followers id to return
      * @param screen_name: name of the user whose followers id to fetch
-     * @param limit : max number of followers id to return
      * 
      * @return array of id's
      */
     
-    function followers_id( $screen_name, $limit = TWITTER_MAX_ID_FETCHED ){
+    function followers_id( $count = 'all', $screen_name = NULL ){
+        
+        if( $screen_name == NULL ){
+            $screen_name = $this->user->screen_name;
+        }
         
         $followers_id = array();
         $cursor = '-1';
+        $i = 0;
+        $i_max = ceil( $count / TWITTER_MAX_ID_FETCHED );
         
         //if followers count exceed max fetcable id's then download them in partitions
-        for( $i = 0; $i < ceil( $limit / TWITTER_MAX_ID_FETCHED ); $i++ ){
+        while( true ){
 
             $request = $this->conn->get('followers/ids', compact('screen_name','cursor') );
+            
+            //dont get any id's useless to do more request
+            if( ! count($request->ids) ){
+                break;
+            }
+            
+            //got that much tweets , that we wanted
+            if( $count != 'all' AND $i >= $i_max ){
+                break;
+            }
             
             $followers_id = array_merge( (array)$followers_id, (array)$request->ids );
             
             $cursor = $request->next_cursor;
+            $i++;
         }
         
         /*
          * how many followers we need
          */
-        if( $limit > count( $followers_id ) ){
+        if( $count != 'all' AND $count > count( $followers_id ) ){
             
             //select some random followers
             $followers_id = array_rand($followers_id, $count);
+            
         }
         
         return $followers_id;
