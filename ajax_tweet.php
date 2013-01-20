@@ -28,4 +28,6 @@
         $tweet_send[]=$t->text;
     }
     
+    header('Content-type: application/json');
+    
     echo json_encode($tweet_send);
