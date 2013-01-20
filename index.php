@@ -19,7 +19,7 @@
 
 <div class="row-fluid">
     <div class="offset3 span6">
-        <div><img src="<?php echo $profile->profile_image_url ?>">
+        <div><img src="<?php echo $profile->profile_image_url ?>"></div>
         <div><?php echo $profile->name ?></div>
     </div>
 </div>
