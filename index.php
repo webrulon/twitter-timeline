@@ -25,7 +25,7 @@
         </div>
         
         <?php // get tweets ?>
-        <h3>Latest 10 Tweets <a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="label-info">Download as PDF</a></h3>            
+        <h3>Latest 10 Tweets <a href="<?php echo ABSPATH . DS . 'pdf.php' ?>" class="label label-info">Download as PDF</a></h3>            
         <?php
             //for carousel
             $tweet = $twitter->get_tweet(10);
