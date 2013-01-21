@@ -63,7 +63,7 @@
           </div>
       </div><!-- end of #header -->
       
-      <div id="about-mode" class="modal hide fade">
+      <div id="about-model" class="modal hide fade">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3>About</h3>
