@@ -4,7 +4,6 @@
     Author     : kuldeep
 */
 
-root { 
-    display: block;
+body{
+    padding-top: 60px;
 }
-

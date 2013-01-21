@@ -29,6 +29,11 @@
   </head>
 
   <body>
+ 
+      <noscript>
+        <div class="alert alert-error">This Page require Javascript Enabled.</div>
+      </noscript>
+      
       <div id="header">
           <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -43,9 +48,14 @@
                       <a class="brand" href="./index.html">Twitter Timeline</a>
                       <div class="nav-collapse collapse">
                           <ul class="nav">
-                              <li class=pull-right">
-                                  <a href="javascript:alert('Experimental Project, Go Further at your own risk')">About</a>
+                              <li class="pull-right">
+                                  <a title="Experimental Project, Go Further at your own risk" href="javascript:alert(this.title)">About</a>
                               </li>
+                              <?php if( ! $twitter->is_unauthed() ): ?>
+                              <li class="pull-right">
+                                  <a href="<?php echo ABSPATH . DS ?>logout.php">Logout</a>
+                              </li>
+                              <?php endif; ?>
                           </ul>
                       </div>
                 </div>

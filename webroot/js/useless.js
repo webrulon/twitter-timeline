@@ -10,7 +10,7 @@ var aboutme = [
     "Programmer, Open Source, Web Developer, Entrepreneur, Animal Lover, Student, Blogger, Reverse Engineer, Embedded System.",
     "I can work with PHP + MySql, jQuery, Javascript, HTML5, CSS3, Wordpress, CakePHP, Twitter Bootstrap, C/C++",
     "I Love & Accept Bitcoins",
-    "Get My GPG Public Key From http://pgp.mit.edu/ , I have signed this file, just append .sig with this script url",
+    "Get My GPG Public Key From http://pgp.mit.edu/ , I have signed this file, just append .gpg with this script url",
     "You Can reach me by +91-8791676237 or Drop a mail At kuldeepdhaka9@gmail.com"
 ];
 
