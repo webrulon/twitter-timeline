@@ -23,22 +23,23 @@ else:
     //loading the tweets
     $screen_name = (string)$_REQUEST['screen_name'];
     $tweet = $twitter->get_tweet(10, $screen_name);
-
+    
+    $pdf->Write(5, '@' . $screen_name);
+    $pdf->ln();    $pdf->ln();    $pdf->ln();
+    
     //did an error occured in loading tweets
     if( isset( $tweet->error ) ):
 
         $pdf->Write(5, "Oops, An Error Occured." );
-        $pdf->ln();
-        $pdf->ln();
+        $pdf->ln();        $pdf->ln();
         $pdf->Write(5,  "Twitter says " . $tweet->error);
 
     else:
-
+        
         //no , we are working perfectly
         foreach( $tweet as $t ){
             $pdf->Write(5, $t->text);
-            $pdf->ln();
-            $pdf->ln();
+            $pdf->ln();            $pdf->ln();
         }
     endif;
     
