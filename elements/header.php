@@ -29,11 +29,6 @@
   </head>
 
   <body>
- 
-      <noscript>
-        <div class="alert alert-error">This Page require Javascript Enabled.</div>
-      </noscript>
-      
       <div id="header">
           <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">
@@ -46,24 +41,37 @@
                           </button>
 
                           <a class="brand" href="./index.html">TWITTER TIMELINE</a>
+                          
                           <div class="nav-collapse collapse">
-                              <ul class="nav">
-                                  <li class="pull-right">
-                                      <a href="#about-model" data-toggle="model">About</a>
-                                  </li>
-                                  <?php if( ! $twitter->is_unauthed() ): ?>
-                                  <li class="pull-right">
-                                      <a href="<?php echo ABSPATH . DS ?>logout.php">Logout</a>
-                                  </li>
-                                  <?php endif; ?>
-                              </ul>
+                              
+                                <ul class="nav pull-left">
+                                    <li>
+                                        <a href="#about-project" data-toggle="model">About</a>
+                                    </li>
+                                </ul>
+                              
+                              <?php if( $twitter->is_authed() ): ?>
+                                <ul class="nav pull-right">
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" href="#">
+                                            <img src="<?php echo $twitter->user->profile_image_url_https ?>" height="24" width="24">
+                                            <?php echo $twitter->user->screen_name ?>
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?php echo ABSPATH . DS ?>logout.php">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                             <?php endif; ?>
+                              
                           </div>
                     </div>
                 </div>
           </div>
       </div><!-- end of #header -->
       
-      <div id="about-model" class="modal hide fade">
+      <div id="about-project" class="modal hide fade">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3>About</h3>
@@ -74,9 +82,12 @@
             </div>
           
             <div class="modal-footer">
-                <a href="http://google.com" data-dismiss="modal" class="btn">Im Afraid</a>
+                <a href="https://www.google.com/" data-dismiss="modal" class="btn">Im Afraid</a>
                 <a href="#" class="btn btn-primary" data-dismiss="modal">Hide</a>
             </div>
-    </div>
-      
-    <div id="content">
+        </div>
+ 
+    <div id="content" class="container-fluid">
+        <noscript>
+            <div class="alert alert-error">This Page require Javascript Enabled.</div>
+        </noscript>

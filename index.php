@@ -15,17 +15,8 @@
     $theme->js_footer('front-page');
     
 ?>
-        <div class="page-header">
-            <h2>Twitter Timeline</h2>
-        </div>
-
         <div class="row-fluid">
-            <div class="span6 offset3">
-                <div>
-                    <div><img src="<?php echo $profile->profile_image_url ?>"></div>
-                    <div><?php echo $profile->name ?></div>
-                </div>
-
+            <div class="span6">
                 <?php // get tweets ?>
                 <h3>Latest 10 Tweets <a id="download-pdf" href="<?php echo ABSPATH . DS . 'pdf.php' ?>?screen_name=<?php echo $profile->screen_name ?>" class="label label-info">Download as PDF</a></h3>            
                 <?php
@@ -41,10 +32,10 @@
                     <a class="carousel-control left" href="#user-tweet" data-slide="prev">&lsaquo;</a>
                     <a class="carousel-control right" href="#user-tweet" data-slide="next">&rsaquo;</a>
                 </div>
-
-                <hr/>
-
-                <?php // get followers ?>
+            </div>
+            
+            <?php // get followers ?>
+            <div class="span6">
                 <h3>10 Random Followers</h3>
                 <?php
 
@@ -86,7 +77,7 @@
                     $select_min = min( count($follower) , 10);
 
                     //printing the list of random user
-                    if( $select_min > 0 ){
+                    if( $select_min > 0 ):
 
                         $rand = array_rand($follower,
                                 //dont ask more tweet that catually their are
@@ -101,10 +92,9 @@
 
                         echo '</ol>';
 
-                    } else {
-
-                        echo '<p class="alert-info">pretty bad , no follower till now</p>';
-                    }
+                    else:
+                        ?><p class="alert-info">pretty bad , no follower till now</p><?php
+                    endif;
                 ?>
             </div>
         </div>

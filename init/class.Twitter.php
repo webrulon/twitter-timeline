@@ -24,9 +24,11 @@ class Twitter{
      * visitor not logined, false
      */
     
-    function is_unauthed(){
+    function is_authed(){
         
-        return (empty($_SESSION['access_token']) || empty($_SESSION['access_token']['oauth_token']) || empty($_SESSION['access_token']['oauth_token_secret']));
+        $is_unauthed = (empty($_SESSION['access_token']) || empty($_SESSION['access_token']['oauth_token']) || empty($_SESSION['access_token']['oauth_token_secret']));
+        
+        return ! $is_unauthed;
     }
     
     /*
@@ -34,7 +36,7 @@ class Twitter{
      * if found unauthed, visitor session clear and goto connect page
      */
     function only_authed(){
-        if( $this->is_unauthed() ){
+        if( ! $this->is_authed() ){
             $this->clear();
         }
     }
@@ -290,3 +292,9 @@ class Twitter{
 }
 
 $twitter = new Twitter(TWITTER_KEY, TWITTER_SECRET);
+
+if( $twitter->is_authed() ){
+    
+    //if the user is auth, try to auth from twitter
+    $twitter->connect();
+}
