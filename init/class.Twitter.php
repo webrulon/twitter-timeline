@@ -301,8 +301,8 @@ class Twitter{
         }
     }
     
-    function new_conn( $token = NULL, $secret = NULL ){
-        $this->conn = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $token, $secret);
+    function new_conn( $token = NULL, $token_secret = NULL ){
+        $this->conn = new TwitterOAuth(TWITTER_KEY, TWITTER_SECRET, $token, $token_secret);
         
         /* modifiying for twitter new api 1.1 */
         $this->conn->host = TWITTER_API_URL;
