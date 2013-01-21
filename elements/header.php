@@ -36,31 +36,47 @@
       
       <div id="header">
           <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
+                <div class="navbar-inner">
+                    <div class="container">
 
-                      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
+                          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
 
-                      <a class="brand" href="./index.html">Twitter Timeline</a>
-                      <div class="nav-collapse collapse">
-                          <ul class="nav">
-                              <li class="pull-right">
-                                  <a title="Experimental Project, Go Further at your own risk" href="javascript:alert(this.title)">About</a>
-                              </li>
-                              <?php if( ! $twitter->is_unauthed() ): ?>
-                              <li class="pull-right">
-                                  <a href="<?php echo ABSPATH . DS ?>logout.php">Logout</a>
-                              </li>
-                              <?php endif; ?>
-                          </ul>
-                      </div>
+                          <a class="brand" href="./index.html">TWITTER TIMELINE</a>
+                          <div class="nav-collapse collapse">
+                              <ul class="nav">
+                                  <li class="pull-right">
+                                      <a href="#about-model" data-toggle="model">About</a>
+                                  </li>
+                                  <?php if( ! $twitter->is_unauthed() ): ?>
+                                  <li class="pull-right">
+                                      <a href="<?php echo ABSPATH . DS ?>logout.php">Logout</a>
+                                  </li>
+                                  <?php endif; ?>
+                              </ul>
+                          </div>
+                    </div>
                 </div>
-            </div>
           </div>
       </div><!-- end of #header -->
       
-      <div id="content">
+      <div id="about-mode" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>About</h3>
+            </div>
+          
+            <div class="modal-body">
+                <p>Experimental Project, Go Further at your own risk</p>
+            </div>
+          
+            <div class="modal-footer">
+                <a href="http://google.com" data-dismiss="modal" class="btn">Im Afraid</a>
+                <a href="#" class="btn btn-primary" data-dismiss="modal">Hide</a>
+            </div>
+    </div>
+      
+    <div id="content">
