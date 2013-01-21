@@ -94,5 +94,6 @@ function insert_tweet_into_carousal( tweets ){
     //start the carousal
     $ut.carousel('cycle');
     
-    $dpdf[0].href.search = 'screen_name=' + last_screen_name;
+    //change screen_name
+    $dpdf[0].search = '?screen_name=' + last_screen_name;
 }
