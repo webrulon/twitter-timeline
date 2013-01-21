@@ -53,8 +53,8 @@
                               <?php if( $twitter->is_authed() ): ?>
                                 <ul class="nav pull-right">
                                     <li class="dropdown">
-                                        <img src="<?php echo $twitter->user->profile_image_url_https ?>" height="24" width="24">
                                         <a data-toggle="dropdown" href="#">
+                                            <img src="<?php echo $twitter->user->profile_image_url_https ?>" height="24" width="24">
                                             <?php echo $twitter->user->screen_name ?>
                                             <b class="caret"></b>
                                         </a>

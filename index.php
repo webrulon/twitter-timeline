@@ -16,7 +16,7 @@
         <div class="row-fluid">
             <div class="span6">
                 <?php // get tweets ?>
-                <h3>Latest 10 Tweets <a id="download-pdf" href="<?php echo ABSPATH . DS . 'pdf.php' ?>?screen_name=<?php echo $profile->screen_name ?>" class="label label-info">Download as PDF</a></h3>            
+                <h3>Latest 10 Tweets <a id="download-pdf" href="<?php echo ABSPATH . DS . 'pdf.php' ?>?screen_name=<?php echo $twitter->user->screen_name ?>" class="label label-info">Download as PDF</a></h3>            
                 <?php
                     //for carousel
                     $tweet = $twitter->get_tweet(10);
