@@ -4,7 +4,7 @@ session_start();
 
 /*
  * please remember, this is developed on linux(LAMP)
- * so it may conflict with names on case insensitive os(ex. windows)
+ * so it may conflict with names on case insensitive os( ex. windows )
  */
 
 /*
@@ -21,3 +21,7 @@ define('_BASEAPP', dirname(__FILE__));
 require_once _BASEAPP . DS .'config.php';
 require_once _BASEAPP . DS .'class.Theme.php';
 require_once _BASEAPP . DS .'class.Twitter.php';
+
+/* create some globals */
+$twitter = new Twitter;
+$theme = new Theme;

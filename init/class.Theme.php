@@ -99,5 +99,3 @@ class Theme{
         }
     }
 }
-
-$theme = new Theme;

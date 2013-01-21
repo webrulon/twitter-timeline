@@ -40,7 +40,7 @@
                             <span class="icon-bar"></span>
                           </button>
 
-                          <a class="brand" href="./index.html">TWITTER TIMELINE</a>
+                          <a class="brand" href="<?php echo ABSPATH ?>">TWITTER TIMELINE</a>
                           
                           <div class="nav-collapse collapse">
                               

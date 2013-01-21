@@ -2,19 +2,21 @@
 
 include_once _LIB . DS . 'twitteroauth/twitteroauth.php';
 
-
-/* a small hack */
-class TwitterOAuth1dot1 extends TwitterOAuth{
-    
-    /* modifiying for twitter new api 1.1 */
-    public $host = TWITTER_API_URL;
-}
-
 class Twitter{
     
     private $conn = NULL;
     
     public $user = NULL;
+    
+    function __construct() {
+        
+        if( $this->is_authed() ){
+            
+            //if the user is auth, try to auth from twitter
+            $this->connect();
+        }
+        
+    }
     
     /*
      * is the visitor login'ed
@@ -40,9 +42,11 @@ class Twitter{
      * if found unauthed, visitor session clear and goto connect page
      */
     function only_authed(){
+        
         if( ! $this->is_authed() ){
             $this->clear();
         }
+        
     }
     /*
      * get URI for login
@@ -52,14 +56,15 @@ class Twitter{
     
     function login_url(){
         
-        $connection = new TwitterOAuth1dot1(TWITTER_KEY, TWITTER_SECRET);
-        $request_token = $connection->getRequestToken(TWITTER_CALLBACK);
+        $this->new_conn();
+        
+        $this->conn->getRequestToken(TWITTER_CALLBACK);
 
         /* Save temporary credentials to session. */
         $_SESSION['request_token'] = $request_token;
         $token = $request_token['oauth_token'];
         
-        return $connection->getAuthorizeURL($token, FALSE);
+        return $this->conn->getAuthorizeURL($token, FALSE);
     }
     
     /*
@@ -77,7 +82,7 @@ class Twitter{
         $access_token = $_SESSION['access_token'];
 
         /* Create a TwitterOauth object with consumer/user tokens. */
-        $this->conn = new TwitterOAuth1dot1(TWITTER_KEY, TWITTER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $this->new_conn($access_token['oauth_token'], $access_token['oauth_token_secret']);
 
         /* If method is set change API call made. Test is called by default. */
         $content = $this->conn->get('account/verify_credentials');
@@ -253,9 +258,11 @@ class Twitter{
      */
     
     function clear(){
+        
         session_destroy();
         header('location: '. TWITTER_LOGIN );
         exit();
+        
     }
     
     
@@ -272,10 +279,10 @@ class Twitter{
         }
         
         /* Create TwitteroAuth object with app key/secret and token key/secret from default phase */
-        $connection = new TwitterOAuth1dot1(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['request_token']['oauth_token'], $_SESSION['request_token']['oauth_token_secret']);
+        $this->new_conn( $_SESSION['request_token']['oauth_token'], $_SESSION['request_token']['oauth_token_secret']);
 
         /* Request access tokens from twitter */
-        $access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
+        $access_token = $this->conn->getAccessToken($_REQUEST['oauth_verifier']);
 
         /* Save the access tokens. Normally these would be saved in a database for future use. */
         $_SESSION['access_token'] = $access_token;
@@ -283,7 +290,7 @@ class Twitter{
         /* remove the request_token, no use */
         unset($_SESSION['request_token']);
         
-        if (200 == $connection->http_code){
+        if (200 == $this->conn->http_code){
             
             header('location: ' . TWITTER_LANDPAGE);
             exit();
@@ -293,12 +300,11 @@ class Twitter{
             $this->clear();
         }
     }
-}
-
-$twitter = new Twitter(TWITTER_KEY, TWITTER_SECRET);
-
-if( $twitter->is_authed() ){
     
-    //if the user is auth, try to auth from twitter
-    $twitter->connect();
+    function new_conn( $token = NULL, $secret = NULL ){
+        $this->conn = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $token, $secret);
+        
+        /* modifiying for twitter new api 1.1 */
+        $this->conn->host = TWITTER_API_URL;
+    }
 }
