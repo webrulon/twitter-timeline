@@ -14,19 +14,23 @@ class Twitter{
     
     private $conn = NULL;
     
-    private $user = NULL;
+    public $user = NULL;
     
     /*
      * is the visitor login'ed
      * 
-     * @return boolean
+     * @return <boolean>
      * visitor logined, true
      * visitor not logined, false
      */
     
     function is_authed(){
         
-        $is_unauthed = (empty($_SESSION['access_token']) || empty($_SESSION['access_token']['oauth_token']) || empty($_SESSION['access_token']['oauth_token_secret']));
+        $is_unauthed = (
+                empty( $_SESSION['access_token'] )
+                OR empty( $_SESSION['access_token']['oauth_token'] )
+                OR empty( $_SESSION['access_token']['oauth_token_secret'] )
+            );
         
         return ! $is_unauthed;
     }
