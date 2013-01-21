@@ -223,7 +223,7 @@ class Twitter{
             $request = $this->conn->get('followers/ids', compact('screen_name','cursor') );
             
             //dont get any id's useless to do more request
-            if( ! count($request->ids) ){
+            if( ! isset( $request->ids ) OR ! count($request->ids) ){
                 break;
             }
             
