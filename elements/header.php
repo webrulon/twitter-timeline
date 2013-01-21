@@ -46,7 +46,7 @@
                               
                                 <ul class="nav pull-left">
                                     <li>
-                                        <a href="#about-project" data-toggle="model">About</a>
+                                        <a href="#about-project" data-toggle="modal">About</a>
                                     </li>
                                 </ul>
                               
