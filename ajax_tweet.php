@@ -22,8 +22,6 @@
         exit();
     }
     
-    $twitter->connect();
-    
     //take precaution for getting input from outside world
     $screen_name = (string)$_REQUEST['screen_name'];
     

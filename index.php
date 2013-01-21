@@ -7,9 +7,7 @@
     require_once 'init/bootloader.php';
     
     $twitter->only_authed();
-    
-    $profile = $twitter->connect();
-    
+
     $theme->elem('header');
     
     $theme->js_footer('front-page');

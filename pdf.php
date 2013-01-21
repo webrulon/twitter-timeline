@@ -22,7 +22,6 @@ else:
     
     //loading the tweets
     $screen_name = (string)$_REQUEST['screen_name'];
-    $twitter->connect();
     $tweet = $twitter->get_tweet(10, $screen_name);
 
     //did an error occured in loading tweets
