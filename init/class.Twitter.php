@@ -58,7 +58,7 @@ class Twitter{
         
         $this->new_conn();
         
-        $this->conn->getRequestToken(TWITTER_CALLBACK);
+        $request_token = $this->conn->getRequestToken(TWITTER_CALLBACK);
 
         /* Save temporary credentials to session. */
         $_SESSION['request_token'] = $request_token;
