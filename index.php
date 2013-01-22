@@ -19,12 +19,21 @@
                 <h3>Latest 10 Tweets <a id="download-pdf" href="<?php echo ABSPATH . DS . 'pdf.php' ?>?screen_name=<?php echo $twitter->user->screen_name ?>" class="label label-info">Download as PDF</a></h3>            
                 <?php
                     //for carousel
-                    $tweet = $twitter->get_tweet(10);
+                    $tweet_raw = $twitter->get_tweet(10);
+                    
+                    $tweet = array();
+                    
+                    foreach( $tweet as $t ){
+                        $tweet[] = $t->text;
+                    }
+                    
+                    $tweet = beautify_tweets( $tweet );
+                    
                 ?>
                 <div id="user-tweet">
                     <div class="carousel-inner">
                         <?php foreach( $tweet as $t ): ?>
-                            <p class="item"><?php echo $t->text ?></p>
+                            <p class="item"><?php echo $t ?></p>
                         <?php endforeach; ?>
                     </div>
                     <a class="carousel-control left" href="#user-tweet" data-slide="prev">&lsaquo;</a>
@@ -85,7 +94,9 @@
                         echo '<ol>';
 
                         foreach($rand as $id){
-                            echo '<li>@' . $follower[$id]->screen_name . ': ' . $follower[$id]->name . '</li>';    
+                            printf('<li><a target="_blank" class="twitter-user" href="https://twitter.com/%1$s">@%1$s</a> %$2s</li>',
+                                    $follower[$id]->screen_name, $follower[$id]->name
+                                );
                         }
 
                         echo '</ol>';

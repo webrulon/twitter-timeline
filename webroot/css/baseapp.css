@@ -7,3 +7,27 @@
 body{
     padding-top: 60px;
 }
+
+.twitter-user,
+.twitter-hash,
+.twitter-link{
+    text-decoration: none;
+}
+
+.twitter-user{
+    color:#0a0;
+}
+
+.twitter-hash{
+    color:#00a;
+}
+
+.twitter-link{
+    color:#a00;
+}
+
+.twitter-user:hover,
+.twitter-hash:hover,
+.twitter-link:hover{
+    text-decoration: underline;
+}

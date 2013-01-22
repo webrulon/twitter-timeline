@@ -45,4 +45,6 @@
         $tweet_send[] = $t->text;
     }
     
+    $tweet_send = beautify_tweets( $tweet_send );
+    
     echo json_encode($tweet_send);

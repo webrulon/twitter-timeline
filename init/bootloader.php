@@ -21,6 +21,7 @@ define('_BASEAPP', dirname(__FILE__));
 require_once _BASEAPP . DS .'config.php';
 require_once _BASEAPP . DS .'class.Theme.php';
 require_once _BASEAPP . DS .'class.Twitter.php';
+require_once _BASEAPP . DS .'func.beautify_tweets.php';
 
 /* create some globals */
 $twitter = new Twitter;
