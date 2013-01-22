@@ -35,8 +35,8 @@ define('WEBROOT_JS', WEBROOT . DS . 'js');
 define('WEBROOT_IMG', WEBROOT . DS . 'img');
 define('WEBROOT_LIB', WEBROOT . DS . 'lib');
 
-define('TWITTER_KEY','23vRWb6FnR4ky6aNfmwYw');
-define('TWITTER_SECRET','VHzDgHdZ4bXo7dgrOC1gtzL99a63Jq7uqsidpC8E8');
+define('TWITTER_KEY','ma8dWD0ikREhuQAIz1McQ');
+define('TWITTER_SECRET','wl8uFpR4CvV2C9BLzVpwTJwrVtfDBBBQE91LTjIja8');
 
 define('TWITTER_LANDPAGE', ABSPATH . DS . 'index.php');
 define('TWITTER_CALLBACK', ABSPATH . DS . 'callback.php');
