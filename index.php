@@ -21,13 +21,13 @@
                     //for carousel
                     $tweet_raw = $twitter->get_tweet(10);
                     
-                    $tweet = array();
+                    $tweets = array();
                     
-                    foreach( $tweet as $t ){
-                        $tweet[] = $t->text;
+                    foreach( $tweet_raw as $t ){
+                        $tweets[] = $t->text;
                     }
                     
-                    $tweet = beautify_tweets( $tweet );
+                    $tweets = beautify_tweets( $tweets );
                     
                 ?>
                 <div id="user-tweet">
