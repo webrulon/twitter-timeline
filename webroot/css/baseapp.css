@@ -10,7 +10,8 @@ body{
 
 .twitter-user,
 .twitter-hash,
-.twitter-link{
+.twitter-link,
+.twitter-email{
     text-decoration: none;
 }
 
@@ -26,8 +27,13 @@ body{
     color:#a00;
 }
 
+.twitter-email{
+    color:#a0a;
+}
+
 .twitter-user:hover,
 .twitter-hash:hover,
-.twitter-link:hover{
+.twitter-link:hover,
+.twitter-email:hover{
     text-decoration: underline;
 }
