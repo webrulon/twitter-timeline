@@ -30,7 +30,7 @@
                     $tweets = beautify_tweets( $tweets );
                     
                 ?>
-                <div id="user-tweet">
+                <div id="user-tweet" class="carousel">
                     <div class="carousel-inner">
                         <?php foreach( $tweets as $tweet ): ?>
                             <p class="item"><?php echo $tweet ?></p>
