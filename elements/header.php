@@ -30,7 +30,7 @@
 
   <body>
       <div id="header">
-          <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar navbar-inverse">
                 <div class="navbar-inner">
                     <div class="container">
 
