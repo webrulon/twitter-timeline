@@ -82,7 +82,7 @@
             </div>
           
             <div class="modal-footer">
-                <a href="https://www.google.com/" data-dismiss="modal" class="btn">Im Afraid</a>
+                <a href="https://www.google.com/" class="btn">Im Afraid</a>
                 <a href="#" class="btn btn-primary" data-dismiss="modal">Hide</a>
             </div>
         </div>
