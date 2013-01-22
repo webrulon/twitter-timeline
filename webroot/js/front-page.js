@@ -34,6 +34,15 @@ $(document).ready(function (){
     //init carousal
     $utin.children().first().addClass('active');
     $ut.carousel();
+    
+    $("body").on( 'click', '.twitter-user', function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        
+        screen_name = $(this).text().substring(1);
+        load_tweets( screen_name );
+        
+    });
 });
 
 function load_tweets( screen_name ){
