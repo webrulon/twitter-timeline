@@ -1,9 +1,9 @@
 <?php
 
 $twitter_beautify_pattern = array(
-        '/([A-Za-z0-9]*)\:\/\/([A-Za-z0-9]*)\.([A-Za-z0-9]*)\/([A-Za-z0-9]*)/',  // for urls
-        '/#([A-Za-z0-9]*)/',
-        '/@([A-Za-z0-9]*)/'
+        '/\s([A-Za-z0-9]*)\:\/\/([A-Za-z0-9]*)\.([A-Za-z0-9]*)\/([A-Za-z0-9]*)\s/',  // for urls
+        '/\s#([A-Za-z0-9]*)\s/',
+        '/\s@([A-Za-z0-9]*)\s/'
 );
 
 $twitter_beautify_replace  = array(
