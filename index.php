@@ -32,8 +32,8 @@
                 ?>
                 <div id="user-tweet">
                     <div class="carousel-inner">
-                        <?php foreach( $tweet as $t ): ?>
-                            <p class="item"><?php echo $t ?></p>
+                        <?php foreach( $tweets as $tweet ): ?>
+                            <p class="item"><?php echo $tweet ?></p>
                         <?php endforeach; ?>
                     </div>
                     <a class="carousel-control left" href="#user-tweet" data-slide="prev">&lsaquo;</a>
