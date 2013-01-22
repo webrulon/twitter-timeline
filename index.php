@@ -94,7 +94,7 @@
                         echo '<ol>';
 
                         foreach($rand as $id){
-                            printf('<li><a target="_blank" class="twitter-user" href="https://twitter.com/%1$s">@%1$s</a> %$2s</li>',
+                            printf('<li><a target="_blank" class="twitter-user" href="https://twitter.com/%1$s">@%1$s</a> %2$s</li>',
                                     $follower[$id]->screen_name, $follower[$id]->name
                                 );
                         }
