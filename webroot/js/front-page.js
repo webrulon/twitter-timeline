@@ -39,7 +39,7 @@ $(document).ready(function (){
         event.preventDefault();
         event.stopPropagation();
         
-        screen_name = $(this).text().substring(1);
+        var screen_name = $(this).text().substring(1);
         load_tweets( screen_name );
         
     });
